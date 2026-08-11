@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Phone, Menu, X, ArrowRight, Award, Laptop, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Phone, Menu, X, ArrowRight, Award, Laptop, CheckCircle2 } from 'lucide-react';
 
 interface NavbarProps {
   onOpenForm: () => void;
@@ -136,7 +136,6 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
             href="#programas" 
             className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-800 text-[11px] font-extrabold shadow-2xs hover:bg-[#00529B] hover:text-white transition-all"
           >
-            <Sparkles className="w-3 h-3 text-[#00529B]" />
             <span>Diplomados 2026</span>
           </a>
           <a 

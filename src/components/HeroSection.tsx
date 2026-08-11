@@ -36,7 +36,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSubmitLead }) => {
   };
 
   return (
-    <section id="hero" className="relative pt-32 pb-16 lg:pt-36 lg:pb-20 bg-[#07192B] text-white overflow-hidden diagonal-bottom">
+    <section id="hero" className="relative pt-44 sm:pt-48 lg:pt-36 pb-16 lg:pb-20 bg-[#07192B] text-white overflow-hidden diagonal-bottom">
       
       {/* Clean Solid Corporate Background - Zero Dots, Zero Glowing Circles */}
       <div className="absolute inset-0 z-0 bg-[#07192B]"></div>
