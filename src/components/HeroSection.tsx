@@ -1,158 +1,298 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Smartphone, CheckCircle2, ShieldCheck, GraduationCap, Award } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Smartphone, CheckCircle2, ShieldCheck, GraduationCap, Award, ChevronLeft, ChevronRight, Scale, Building2 } from 'lucide-react';
 
 interface HeroSectionProps {
   onOpenForm: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      id: 'ingenieria-civil',
+      tag: 'CONVOCATORIA Y LANZAMIENTO 2026',
+      tagIcon: <GraduationCap className="w-4 h-4 text-[#00A3E0]" />,
+      title1: 'LANZAMIENTO EXCLUSIVO',
+      title2: 'AULA VIRTUAL 24/7',
+      subtitle: 'Formación en ingeniería sin interrupciones',
+      bullet1Title: 'Clases 100% Virtuales En Vivo',
+      bullet1Sub: 'Docentes colegiados CIP activos',
+      bullet2Title: 'Certificación Oficial con QR',
+      bullet2Sub: 'Válida para Licitaciones OSCE',
+      btnText: '¡HAZ CLIC AQUÍ!',
+      btnColor: 'bg-[#00A3E0] hover:bg-[#0082B3] text-white border border-cyan-300 shadow-cyan-500/30',
+      badgeTop: '10% OFF EXCLUSIVO',
+      badgeBottom: 'Acreditación CIP Oficial',
+      badgeBottomSub: 'Válido para Licitaciones',
+      badgeBottomIcon: <ShieldCheck className="w-5 h-5 text-[#00A3E0]" />,
+      image: '/assets/engineer_user_cutout.png',
+      imageAlt: 'Ingeniero Civil Residente de Obra Grupo INSUR',
+      accentColor: 'text-[#00A3E0]',
+      themeColor: '#00A3E0'
+    },
+    {
+      id: 'alta-especializacion',
+      tag: 'ESPECIALIZACIÓN & DIPLOMADOS',
+      tagIcon: <Building2 className="w-4 h-4 text-[#1559ED]" />,
+      title1: 'DIPLOMADOS EJECUTIVOS',
+      title2: 'ESTRUCTURAS & BIM 5D',
+      subtitle: 'Cálculo Sismorresistente, Hidráulica y Gestión Vial',
+      bullet1Title: 'Plana Docente Ph.D. & Magíster',
+      bullet1Sub: 'Ingenieros con amplia trayectoria',
+      bullet2Title: 'Doble Certificación Universitaria',
+      bullet2Sub: 'Respaldo institucional CIP nacional',
+      btnText: 'VER DIPLOMADOS',
+      btnColor: 'bg-[#1559ED] hover:bg-blue-700 text-white border border-blue-400 shadow-blue-500/30',
+      badgeTop: 'VACANTES LIMITADAS',
+      badgeBottom: 'Doble Certificación CIP',
+      badgeBottomSub: 'Horas Lectivas Válidas',
+      badgeBottomIcon: <Award className="w-5 h-5 text-[#1559ED]" />,
+      image: '/assets/instructor_vanessa.jpg',
+      imageAlt: 'Dra. Vanessa Alarcón Docente Grupo INSUR',
+      accentColor: 'text-[#1559ED]',
+      themeColor: '#1559ED'
+    },
+    {
+      id: 'gestion-osce',
+      tag: 'CONVENIO COLEGIO DE ABOGADOS',
+      tagIcon: <Scale className="w-4 h-4 text-amber-500" />,
+      title1: 'GESTIÓN PÚBLICA & OSCE',
+      title2: 'LEY DE CONTRATACIONES',
+      subtitle: 'Licitaciones del Estado, Arbitraje e Invierte.pe',
+      bullet1Title: 'Abogados y Árbitros de Estado',
+      bullet1Sub: 'Especialistas en Derecho de la Construcción',
+      bullet2Title: 'Respaldo del Colegio de Abogados',
+      bullet2Sub: 'Convenio institucional ICA oficial',
+      btnText: 'SOLICITAR BECA 10% OFF',
+      btnColor: 'bg-[#0A2540] hover:bg-slate-900 text-white border border-cyan-400/40 shadow-slate-900/40',
+      badgeTop: 'BECA 10% ACTIVA',
+      badgeBottom: 'Respaldo ICA & OSCE',
+      badgeBottomSub: 'Arbitraje y Contrataciones',
+      badgeBottomIcon: <Scale className="w-5 h-5 text-amber-500" />,
+      image: '/assets/instructor_gabriel.jpg',
+      imageAlt: 'Abogado Gabriel Flores Especialista OSCE Grupo INSUR',
+      accentColor: 'text-[#00A3E0]',
+      themeColor: '#0A2540'
+    }
+  ];
+
+  // Auto-advance slides every 6.5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6500);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const slide = slides[currentSlide];
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
   return (
     <section id="hero" className="relative pt-36 pb-16 lg:pt-40 lg:pb-20 bg-gradient-to-b from-white via-[#F8FAFC] to-white text-slate-900 overflow-hidden border-b border-slate-200">
       
-      {/* Clean Ambient Corporate Lighting */}
+      {/* Brand Identity Accent Glows matching Logo (Deep Navy & Cyan) */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
-        <div className="absolute top-10 left-10 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-100/50 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 left-10 w-96 h-96 bg-[#00A3E0]/15 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#0A2540]/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          {/* Left Column: CERSA-Style Bold Headline & Call-to-Action */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-7 space-y-6 text-center lg:text-left"
+        
+        {/* Slide Controls & Indicator Tabs at Top */}
+        <div className="flex items-center justify-between gap-2 mb-6 pb-2 border-b border-slate-200/80">
+          <div className="flex items-center gap-2">
+            {slides.map((s, idx) => (
+              <button
+                key={s.id}
+                onClick={() => setCurrentSlide(idx)}
+                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  currentSlide === idx 
+                    ? 'w-10 bg-[#00A3E0] shadow-xs' 
+                    : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                }`}
+                aria-label={`Ir al slide ${idx + 1}`}
+              />
+            ))}
+            <span className="text-[11px] font-bold text-slate-400 ml-2">
+              0{currentSlide + 1} / 0{slides.length}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={handlePrev}
+              className="p-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-[#00A3E0] shadow-xs transition-colors cursor-pointer"
+              aria-label="Slide anterior"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="p-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-[#00A3E0] shadow-xs transition-colors cursor-pointer"
+              aria-label="Siguiente slide"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Dynamic Slide Content Container */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slide.id}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[460px]"
           >
             
-            {/* Clean Corporate Top Badge Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#1559ED] text-xs font-black uppercase tracking-wider shadow-2xs">
-              <GraduationCap className="w-4 h-4 text-[#1559ED]" />
-              <span>CONVOCATORIA Y LANZAMIENTO EXCLUSIVO 2026</span>
-            </div>
-
-            {/* CERSA-Style Giant Typography */}
-            <div className="space-y-1">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1559ED] tracking-tight leading-none uppercase">
-                LANZAMIENTO EXCLUSIVO
-              </h1>
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-light text-slate-400 tracking-tight uppercase">
-                AULA VIRTUAL 24/7
-              </div>
-              <p className="text-lg sm:text-xl font-medium text-slate-500 italic font-serif pt-1">
-                Formación en ingeniería sin interrupciones
-              </p>
-            </div>
-
-            {/* Feature Bullets */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left max-w-lg mx-auto lg:mx-0">
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-2.5 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs"
-              >
-                <CheckCircle2 className="w-5 h-5 text-[#1559ED] shrink-0" />
-                <div>
-                  <h4 className="text-xs font-black text-slate-800">Clases 100% Virtuales En Vivo</h4>
-                  <p className="text-[10px] text-slate-500 font-medium">Docentes colegiados CIP activos</p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="flex items-center gap-2.5 bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs"
-              >
-                <ShieldCheck className="w-5 h-5 text-[#1559ED] shrink-0" />
-                <div>
-                  <h4 className="text-xs font-black text-slate-800">Certificación Oficial con QR</h4>
-                  <p className="text-[10px] text-slate-500 font-medium">Válida para Licitaciones OSCE</p>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Giant Cyan Pill Action Button -> Opens Registration Popup Modal! */}
-            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={onOpenForm}
-                className="px-9 py-4 rounded-full bg-[#00A3E0] hover:bg-[#0082B3] text-white font-black text-sm uppercase tracking-wider shadow-xl hover:shadow-cyan-500/30 transition-all inline-flex items-center gap-3 cursor-pointer border border-cyan-300"
-              >
-                <span>¡HAZ CLIC AQUÍ!</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-
-              {/* App Badges */}
-              <div className="flex items-center gap-3 text-xs font-extrabold text-slate-600">
-                <div className="flex items-center gap-1.5 bg-white px-3.5 py-2.5 rounded-2xl border border-slate-200 shadow-2xs">
-                  <Smartphone className="w-4 h-4 text-[#1559ED]" />
-                  <span>iOS & Android App</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Trust Quote */}
-            <div className="pt-2 flex items-center justify-center lg:justify-start gap-4 text-xs font-bold text-slate-500">
-              <span className="flex items-center gap-1 text-emerald-600">
-                <Award className="w-4 h-4" /> 10% Descuento Directo
-              </span>
-              <span>•</span>
-              <span>Vacantes Limitadas Convocatoria 2026</span>
-            </div>
-
-          </motion.div>
-
-          {/* Right Column: Engineer Photo Cutout (Replacing the tablet mockup as requested!) */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 flex items-center justify-center"
-          >
-            <div className="relative w-full max-w-sm sm:max-w-md flex flex-col items-center cursor-pointer group" onClick={onOpenForm}>
+            {/* Left Column: Bold Headline & Call-to-Action */}
+            <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
               
-              {/* Engineer Cutout Image */}
-              <div className="relative w-full flex items-center justify-center">
-                <img
-                  src="/assets/engineer_user_cutout.png"
-                  alt="Ingeniero Civil Residente de Obras Grupo INSUR"
-                  className="w-full h-auto max-h-[460px] sm:max-h-[520px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] group-hover:scale-105 transition-transform duration-500"
-                />
+              {/* Brand Top Tag */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/80 border border-blue-200 text-[#0A2540] text-xs font-black uppercase tracking-wider shadow-2xs">
+                {slide.tagIcon}
+                <span>{slide.tag}</span>
+              </div>
 
-                {/* Floating 10% OFF Badge */}
-                <div className="absolute top-6 right-2 sm:right-4 bg-[#D92D20] text-white text-[11px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-xl animate-bounce border-2 border-white">
-                  10% OFF EXCLUSIVO
+              {/* Giant Typography with Logo Colors (Navy & Cyan) */}
+              <div className="space-y-1">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A2540] tracking-tight leading-none uppercase">
+                  {slide.title1}
+                </h1>
+                <div className={`text-3xl sm:text-4xl lg:text-5xl font-black ${slide.accentColor} tracking-tight uppercase`}>
+                  {slide.title2}
+                </div>
+                <p className="text-base sm:text-lg font-medium text-slate-500 italic font-serif pt-1">
+                  {slide.subtitle}
+                </p>
+              </div>
+
+              {/* Feature Bullets */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-left max-w-lg mx-auto lg:mx-0">
+                <div className="flex items-center gap-2.5 bg-white p-3 rounded-2xl border border-slate-200 shadow-xs">
+                  <CheckCircle2 className="w-5 h-5 text-[#00A3E0] shrink-0" />
+                  <div>
+                    <h4 className="text-xs font-black text-slate-800">{slide.bullet1Title}</h4>
+                    <p className="text-[10px] text-slate-500 font-medium">{slide.bullet1Sub}</p>
+                  </div>
                 </div>
 
-                {/* Floating CIP Trust Seal Chip */}
-                <div className="absolute bottom-6 left-2 sm:left-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-200 shadow-xl flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#1559ED] shrink-0 border border-blue-200">
-                    <ShieldCheck className="w-5 h-5 text-[#1559ED]" />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[11px] font-black text-[#0A2540] leading-none">Acreditación CIP Oficial</p>
-                    <p className="text-[9px] text-slate-500 font-bold mt-0.5">Válido para Licitaciones</p>
+                <div className="flex items-center gap-2.5 bg-white p-3 rounded-2xl border border-slate-200 shadow-xs">
+                  <ShieldCheck className="w-5 h-5 text-[#00A3E0] shrink-0" />
+                  <div>
+                    <h4 className="text-xs font-black text-slate-800">{slide.bullet2Title}</h4>
+                    <p className="text-[10px] text-slate-500 font-medium">{slide.bullet2Sub}</p>
                   </div>
                 </div>
               </div>
 
-              {/* Bottom Interactive Trigger Banner */}
-              <div className="mt-2 w-full p-3.5 rounded-2xl bg-[#1559ED] hover:bg-blue-700 text-white text-center flex items-center justify-between shadow-lg transition-all border border-blue-400">
-                <div className="text-left">
-                  <p className="text-[10px] font-bold text-cyan-200 uppercase">Convocatoria 2026</p>
-                  <p className="text-xs font-black">Inscríbete Hoy Mismo</p>
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  onClick={onOpenForm}
+                  className={`px-8 py-3.5 rounded-full font-black text-sm uppercase tracking-wider shadow-lg transition-all inline-flex items-center gap-2.5 cursor-pointer ${slide.btnColor}`}
+                >
+                  <span>{slide.btnText}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+
+                <div className="flex items-center gap-1.5 bg-white px-3 py-2 rounded-2xl border border-slate-200 shadow-2xs text-xs font-black text-slate-600">
+                  <Smartphone className="w-4 h-4 text-[#00A3E0]" />
+                  <span>App 24/7</span>
                 </div>
-                <span className="px-3 py-1.5 rounded-xl bg-white text-[#1559ED] text-xs font-black uppercase shadow-xs flex items-center gap-1">
-                  <span>Reclamar 10% OFF</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+
+              {/* Trust Quote */}
+              <div className="pt-1 flex items-center justify-center lg:justify-start gap-3 text-xs font-bold text-slate-500">
+                <span className="flex items-center gap-1 text-emerald-600">
+                  <Award className="w-4 h-4" /> 10% Descuento Directo
                 </span>
+                <span>•</span>
+                <span>Convocatoria Nacional 2026</span>
               </div>
 
             </div>
-          </motion.div>
 
-        </div>
+            {/* Right Column: Dynamic Portrait / Professional Cutout */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div 
+                className="relative w-full max-w-sm sm:max-w-md flex flex-col items-center cursor-pointer group"
+                onClick={onOpenForm}
+              >
+                
+                {/* Photo Display */}
+                <div className="relative w-full flex items-center justify-center min-h-[380px] sm:min-h-[420px]">
+                  {slide.id === 'ingenieria-civil' ? (
+                    // Transparent Cutout for Engineer
+                    <img
+                      src={slide.image}
+                      alt={slide.imageAlt}
+                      className="w-full h-auto max-h-[440px] sm:max-h-[480px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.22)] group-hover:scale-103 transition-transform duration-500"
+                    />
+                  ) : (
+                    // Framed Studio Portrait for Doctora / Lawyer
+                    <div className="relative w-full h-80 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                      <img
+                        src={slide.image}
+                        alt={slide.imageAlt}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540]/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4 text-white text-left">
+                        <p className="text-sm font-black text-white">{slide.imageAlt}</p>
+                        <p className="text-xs text-cyan-300 font-bold">{slide.subtitle}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Floating Red 10% OFF Badge */}
+                  <div className="absolute top-4 right-2 sm:right-4 bg-[#D92D20] text-white text-[11px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-xl animate-bounce border-2 border-white">
+                    {slide.badgeTop}
+                  </div>
+
+                  {/* Floating Trust Seal Chip */}
+                  <div className="absolute bottom-4 left-2 sm:left-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl border border-slate-200 shadow-xl flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-200">
+                      {slide.badgeBottomIcon}
+                    </div>
+                    <div className="text-left">
+                      <p className="text-[11px] font-black text-[#0A2540] leading-none">{slide.badgeBottom}</p>
+                      <p className="text-[9px] text-slate-500 font-bold mt-0.5">{slide.badgeBottomSub}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Interactive Trigger Pill */}
+                <div className="mt-2 w-full p-3 rounded-2xl bg-[#0A2540] hover:bg-slate-900 text-white text-center flex items-center justify-between shadow-lg transition-all border border-slate-700">
+                  <div className="text-left">
+                    <p className="text-[9px] font-bold text-[#00A3E0] uppercase">Convocatoria 2026</p>
+                    <p className="text-xs font-black">Inscríbete Hoy Mismo</p>
+                  </div>
+                  <span className="px-3 py-1 rounded-xl bg-[#00A3E0] text-white text-xs font-black uppercase shadow-xs flex items-center gap-1">
+                    <span>Reclamar 10% OFF</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </span>
+                </div>
+
+              </div>
+            </div>
+
+          </motion.div>
+        </AnimatePresence>
+
       </div>
     </section>
   );

@@ -21,19 +21,19 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       
-      {/* Top Royal Blue Notification Ribbon */}
-      <div className="bg-[#1559ED] text-white text-xs font-bold py-2 px-4 shadow-sm border-b border-blue-600">
+      {/* Top Deep Navy Notification Ribbon */}
+      <div className="bg-[#0A2540] text-white text-xs font-bold py-2 px-4 shadow-sm border-b border-slate-800">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           
           {/* Left Promo Badges */}
           <div className="flex items-center gap-2 truncate">
-            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+            <span className="bg-[#00A3E0] text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
               ¡CONVOCATORIA 2026!
             </span>
-            <span className="bg-blue-800 text-white font-extrabold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider truncate">
+            <span className="bg-slate-800 text-cyan-300 font-extrabold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider truncate border border-slate-700">
               ACCEDE AL 10% DE DESCUENTO
             </span>
-            <span className="hidden md:inline text-blue-100 font-medium text-[11px]">
+            <span className="hidden md:inline text-slate-300 font-medium text-[11px]">
               Válido por 48 horas • Término de oferta próximo
             </span>
           </div>
@@ -75,9 +75,9 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
               />
             </motion.div>
             
-            <div className="text-left border-l-2 border-blue-600 pl-3">
-              <span className="block font-black text-[#1559ED] text-base tracking-tight leading-none">
-                Grupo INSUR
+            <div className="text-left border-l-2 border-[#00A3E0] pl-3">
+              <span className="block font-black text-[#0A2540] text-base tracking-tight leading-none">
+                Grupo <span className="text-[#00A3E0]">INSUR</span>
               </span>
               <span className="block text-[10px] text-slate-500 font-extrabold tracking-wide mt-0.5 uppercase">
                 Centro de Altos Estudios
@@ -87,11 +87,11 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
 
           {/* Navigation Links */}
           <nav className="hidden lg:flex items-center gap-8 text-xs font-black text-slate-700 uppercase tracking-wide">
-            <a href="#hero" className="text-[#1559ED] border-b-2 border-[#1559ED] pb-1 font-black">INICIO</a>
-            <a href="#escuelas" className="hover:text-[#1559ED] transition-colors pb-1">NUESTRAS ESCUELAS</a>
-            <a href="#alianzas" className="hover:text-[#1559ED] transition-colors pb-1">ALIANZAS INSTITUCIONALES</a>
-            <a href="#certificado" className="hover:text-[#1559ED] transition-colors pb-1">CERTIFICADO OFICIAL</a>
-            <a href="#catalogo" className="hover:text-[#1559ED] transition-colors pb-1">CURSOS & DIPLOMADOS</a>
+            <a href="#hero" className="text-[#00A3E0] border-b-2 border-[#00A3E0] pb-1 font-black">INICIO</a>
+            <a href="#escuelas" className="hover:text-[#00A3E0] transition-colors pb-1">NUESTRAS ESCUELAS</a>
+            <a href="#alianzas" className="hover:text-[#00A3E0] transition-colors pb-1">ALIANZAS INSTITUCIONALES</a>
+            <a href="#certificado" className="hover:text-[#00A3E0] transition-colors pb-1">CERTIFICADO OFICIAL</a>
+            <a href="#catalogo" className="hover:text-[#00A3E0] transition-colors pb-1">CURSOS & DIPLOMADOS</a>
           </nav>
 
           {/* Right Action Controls */}
@@ -99,18 +99,18 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
             
             {/* Currency selector badge */}
             <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-[11px] font-black text-slate-700">
-              <span className="px-2 py-0.5 rounded bg-[#1559ED] text-white">S/.</span>
+              <span className="px-2 py-0.5 rounded bg-[#0A2540] text-white">S/.</span>
               <span className="px-2 py-0.5 text-slate-400">$</span>
             </div>
 
-            {/* Blue Aula Virtual Button */}
+            {/* Cyan Aula Virtual Button */}
             <motion.a 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="https://wa.me/51966000111?text=Hola%20Grupo%20INSUR,%20deseo%20acceder%20al%20Aula%20Virtual." 
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-xl bg-[#1559ED] hover:bg-blue-700 text-white text-xs font-black transition-all shadow-md active:scale-95 flex items-center gap-1.5 uppercase tracking-wider"
+              className="px-4 py-2 rounded-xl bg-[#00A3E0] hover:bg-[#0082B3] text-white text-xs font-black transition-all shadow-md active:scale-95 flex items-center gap-1.5 uppercase tracking-wider"
             >
               <span>Aula Virtual</span>
               <ArrowRight className="w-3.5 h-3.5" />
