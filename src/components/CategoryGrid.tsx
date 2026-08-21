@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HardHat, Droplets, Building2, Landmark, Mountain, ArrowRight, Award, CheckCircle2, BookOpen, GraduationCap } from 'lucide-react';
+import { HardHat, Droplets, Building2, Landmark, Mountain, ArrowRight, Award, CheckCircle2, BookOpen, GraduationCap, UserCheck } from 'lucide-react';
 
 interface CategoryGridProps {
   onSelectCategory: (categoryId: string) => void;
@@ -73,7 +73,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
       programs: ['Ley de Contrataciones OSCE', 'Invierte.pe y Fichas Técnicas', 'Arbitraje de Estado'],
       instructorName: 'Mg. Abog. Gabriel Flores T.',
       instructorCip: 'CAL N° 45892 / CIP',
-      instructorRole: 'Especialista en Licitaciones OSCE & Derecho de la Construcción',
+      instructorRole: 'Especialista en Licitaciones OSCE & Derecho',
       instructorDegree: 'Magíster en Derecho de la Construcción y Arbitraje',
       instructorPhoto: '/assets/instructor_gabriel.jpg',
       instructorExperience: '+12 años en Gestión Pública y Asesoría Legal'
@@ -90,8 +90,8 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
       programs: ['Geotecnia y Taludes', 'Seguridad Minera SSOMA', 'Topografía Satelital'],
       instructorName: 'Ing. Marco Antonio Ramos',
       instructorCip: 'CIP N° 162901',
-      instructorRole: 'Consultor Senior en Carreteras & Geotecnia Minera',
-      instructorDegree: 'Especialista en Ingeniería de Transportes y Minería',
+      instructorRole: 'Consultor Senior en Carreteras & Geotecnia',
+      instructorDegree: 'Especialista en Ingeniería de Transportes',
       instructorPhoto: '/assets/instructor_marco.jpg',
       instructorExperience: '+16 años en Megaproyectos Viales y Mineros'
     }
@@ -143,60 +143,64 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="relative rounded-3xl overflow-hidden shadow-xl border-2 border-[#1559ED] bg-slate-950 text-white min-h-[380px] flex flex-col justify-between p-6"
+            className="rounded-3xl overflow-hidden shadow-xl border-2 border-[#1559ED] bg-white text-slate-900 flex flex-col justify-between"
           >
-            {/* Background High-Res Image */}
-            <img
-              src={currentSchool.image}
-              alt={currentSchool.name}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/20" />
-
-            {/* Top Badges */}
-            <div className="relative z-10 flex items-center justify-between">
-              <div className="p-2.5 rounded-2xl bg-white text-slate-900 shadow-md">
+            {/* Top School Header with Cover Photo */}
+            <div className="relative h-48 overflow-hidden bg-slate-950">
+              <img
+                src={currentSchool.image}
+                alt={currentSchool.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+              <div className="absolute top-4 left-4 p-2 rounded-xl bg-white shadow-md text-slate-900">
                 {currentSchool.icon}
               </div>
-              <span className={`text-[10px] font-black text-white px-3 py-1 rounded-full uppercase tracking-wider shadow-md ${currentSchool.badgeColor}`}>
-                ESCUELA ACTIVA
-              </span>
+              <div className="absolute bottom-3 left-4 right-4 text-white">
+                <span className={`text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider ${currentSchool.badgeColor} inline-block mb-1`}>
+                  {currentSchool.name}
+                </span>
+                <h3 className="text-xl font-black text-cyan-300 tracking-tight leading-tight">
+                  {currentSchool.subtitle}
+                </h3>
+              </div>
             </div>
 
-            {/* Bottom Content with High-Contrast Text */}
-            <div className="relative z-10 space-y-3 pt-12">
-              <div>
-                <h3 className="text-2xl font-black text-cyan-300 tracking-tight leading-tight drop-shadow-md">
-                  {currentSchool.name}
-                </h3>
-                <p className="text-xs font-bold text-white/90 mt-0.5 drop-shadow-sm">
-                  {currentSchool.subtitle}
-                </p>
-              </div>
-
-              <p className="text-xs text-slate-100 font-medium leading-relaxed drop-shadow-sm">
-                {currentSchool.description}
-              </p>
-
-              {/* Active Instructor on Mobile */}
-              <div className="flex items-center gap-3 bg-slate-900/90 backdrop-blur-md p-3 rounded-2xl border border-slate-700">
-                <img
-                  src={currentSchool.instructorPhoto}
-                  alt={currentSchool.instructorName}
-                  className="w-12 h-12 rounded-xl object-cover object-top border border-cyan-400/50 shrink-0"
-                />
-                <div className="text-left truncate">
-                  <span className="text-[10px] font-black text-amber-300 block uppercase">{currentSchool.instructorCip}</span>
-                  <p className="text-xs font-black text-white truncate">{currentSchool.instructorName}</p>
-                  <p className="text-[10px] text-slate-300 truncate">{currentSchool.instructorRole}</p>
+            {/* Middle Section: Assigned Instructor in Full Crisp Clarity */}
+            <div className="p-5 space-y-4">
+              <div className="flex items-center gap-3.5 bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+                <div className="relative w-16 h-20 rounded-xl overflow-hidden shadow-sm shrink-0 border border-slate-300">
+                  <img
+                    src={currentSchool.instructorPhoto}
+                    alt={currentSchool.instructorName}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="text-left">
+                  <span className="text-[10px] font-black text-[#D92D20] uppercase tracking-wider block">
+                    {currentSchool.instructorCip}
+                  </span>
+                  <h4 className="text-sm font-black text-[#0A2540] leading-snug">
+                    {currentSchool.instructorName}
+                  </h4>
+                  <p className="text-xs font-bold text-[#1559ED]">
+                    {currentSchool.instructorDegree}
+                  </p>
+                  <p className="text-[11px] text-slate-500 font-medium mt-0.5">
+                    {currentSchool.instructorRole}
+                  </p>
                 </div>
               </div>
+
+              <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                {currentSchool.description}
+              </p>
 
               {/* Programs List */}
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {currentSchool.programs.map((prog, pIdx) => (
-                  <span key={pIdx} className="bg-slate-900/90 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-black text-cyan-200 border border-slate-700 flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                  <span key={pIdx} className="bg-blue-50 px-2.5 py-1 rounded-lg text-[10px] font-black text-[#1559ED] border border-blue-200 flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                     {prog}
                   </span>
                 ))}
@@ -206,7 +210,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
               <div className="pt-2">
                 <button
                   onClick={() => onSelectCategory(currentSchool.id)}
-                  className="w-full py-3.5 px-4 rounded-xl bg-[#1559ED] hover:bg-blue-600 text-white font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-95 border border-cyan-400/40"
+                  className="w-full py-3.5 px-4 rounded-xl bg-[#1559ED] hover:bg-blue-600 text-white font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                 >
                   <BookOpen className="w-4 h-4" />
                   <span>Ver Cursos de {currentSchool.name}</span>
@@ -218,11 +222,11 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
 
         </div>
 
-        {/* DESKTOP VIEW (Visible on screens >= lg): Dynamic Accordion Photo Gallery + Right Feature Banner */}
+        {/* DESKTOP VIEW (Visible on screens >= lg): Dynamic Accordion Photo Gallery + Clean Right Feature Banner */}
         <div className="hidden lg:grid grid-cols-12 gap-7 items-stretch">
           
           {/* Left: Dynamic Expandable Accordion */}
-          <div className="col-span-8 flex flex-row gap-3 min-h-[450px] items-stretch">
+          <div className="col-span-8 flex flex-row gap-3 min-h-[480px] items-stretch">
             {schools.map((school) => {
               const isSelected = activeSchoolId === school.id;
               
@@ -326,7 +330,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             })}
           </div>
 
-          {/* Right: Synced Feature Banner with Active School Info & EXACT INSTRUCTOR PHOTO */}
+          {/* Right: Clean, Crisp Faculty Card with Full Face Portrait (No text over face!) */}
           <motion.div
             key={currentSchool.id}
             initial={{ opacity: 0, x: 20 }}
@@ -344,7 +348,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
               </div>
 
               {/* School Header */}
-              <div>
+              <div className="mb-3">
                 <h3 className="text-xl font-black text-[#0A2540] tracking-tight leading-snug">
                   {currentSchool.name}
                 </h3>
@@ -353,39 +357,38 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
                 </p>
               </div>
 
-              {/* Instructor Portrait Photo Synced to the School! */}
-              <div className="relative my-3 rounded-2xl overflow-hidden border-2 border-slate-200 bg-slate-100 shadow-md">
+              {/* Perfectly Centered & Framed Portrait (No Text Overlay Over Face!) */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-slate-200 bg-slate-50 shadow-md mb-4 h-64 flex items-center justify-center">
                 <img
                   src={currentSchool.instructorPhoto}
                   alt={currentSchool.instructorName}
-                  className="w-full h-52 object-cover object-top hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540]/90 via-transparent to-transparent" />
                 
                 {/* Floating CIP/CAL Badge */}
-                <div className="absolute top-3 right-3 bg-[#D92D20] text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md uppercase">
+                <div className="absolute top-3.5 right-3.5 bg-[#D92D20] text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg uppercase tracking-wider border border-white/50">
                   {currentSchool.instructorCip}
-                </div>
-
-                {/* Instructor Name on Photo */}
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <p className="text-xs font-black tracking-tight leading-tight text-white drop-shadow-md">
-                    {currentSchool.instructorName}
-                  </p>
-                  <p className="text-[10px] text-cyan-300 font-bold truncate">
-                    {currentSchool.instructorDegree}
-                  </p>
                 </div>
               </div>
 
-              {/* Role & Experience Info */}
-              <div className="space-y-1.5 text-xs">
-                <div className="flex items-start gap-1.5 font-bold text-slate-800">
-                  <Award className="w-3.5 h-3.5 text-[#1559ED] shrink-0 mt-0.5" />
+              {/* Instructor Information Cleanly Located Below Photo */}
+              <div className="space-y-2">
+                <div>
+                  <h4 className="text-base font-black text-[#0A2540] leading-snug">
+                    {currentSchool.instructorName}
+                  </h4>
+                  <p className="text-xs font-black text-[#1559ED]">
+                    {currentSchool.instructorDegree}
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-2 text-xs font-bold text-slate-800 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                  <UserCheck className="w-4 h-4 text-[#1559ED] shrink-0 mt-0.5" />
                   <span className="leading-tight">{currentSchool.instructorRole}</span>
                 </div>
-                <div className="flex items-start gap-1.5 font-semibold text-slate-500 text-[11px]">
-                  <GraduationCap className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+
+                <div className="flex items-start gap-2 text-[11px] text-slate-500 font-semibold bg-blue-50/50 p-2.5 rounded-xl border border-blue-100">
+                  <GraduationCap className="w-3.5 h-3.5 text-[#1559ED] shrink-0 mt-0.5" />
                   <span>{currentSchool.instructorExperience}</span>
                 </div>
               </div>
