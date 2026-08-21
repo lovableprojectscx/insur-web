@@ -6,8 +6,8 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
   return (
-    <section id="hero" className="pt-12 sm:pt-16 pb-2 sm:pb-6 bg-white w-full overflow-hidden flex items-center justify-center">
-      {/* Clickable Hero Banner - Perfectly Centered on Mobile & Desktop */}
+    <section id="hero" className="pt-12 sm:pt-16 pb-0 mb-0 bg-white w-full overflow-hidden flex items-center justify-center">
+      {/* Clickable Hero Banner - 100% Attached with Zero Bottom Padding */}
       <div 
         onClick={onOpenForm}
         className="w-full cursor-pointer flex items-center justify-center select-none overflow-hidden"

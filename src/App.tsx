@@ -36,20 +36,20 @@ export function App() {
       {/* Clean Compact Navbar */}
       <Navbar onOpenForm={handleOpenRegistration} />
 
-      <main className="space-y-4 sm:space-y-8">
-        {/* 1. Official Hero Banner */}
-        <HeroSection onOpenForm={handleOpenRegistration} />
+      <main>
+        {/* Hero & Attached Benefit Ticker (Zero Gap) */}
+        <div>
+          <HeroSection onOpenForm={handleOpenRegistration} />
+          <BenefitTicker />
+        </div>
 
-        {/* 2. Auto-Scrolling Benefit Ribbon */}
-        <BenefitTicker />
-
-        {/* 3. Catálogo de Cursos y Diplomados */}
+        {/* Course Catalog */}
         <CourseCatalog onOpenForm={handleOpenRegistration} />
 
-        {/* 4. Certificación y Alianzas CIP / ICA */}
+        {/* Certificación y Alianzas CIP / ICA */}
         <CertificateAndAlliances onOpenForm={handleOpenRegistration} />
 
-        {/* 5. Plana Docente CIP & Abogados */}
+        {/* Plana Docente CIP & Abogados */}
         <InstructorsSection />
       </main>
 
