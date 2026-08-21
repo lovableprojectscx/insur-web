@@ -14,6 +14,13 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
   const [selectedCourseSyllabus, setSelectedCourseSyllabus] = useState<Course | null>(null);
   const [visibleCount, setVisibleCount] = useState<number>(3);
 
+  const categories = [
+    { id: 'todos', label: 'Todos los Programas' },
+    { id: 'diplomado', label: 'Capacitación' },
+    { id: 'tecnico', label: 'Carrera técnica' },
+    { id: 'ingenieria', label: 'Ingeniería y construcción' },
+  ];
+
   const filteredCourses = FEATURED_COURSES.filter((course) => {
     const matchesCategory = activeCategory === 'todos' || course.category === activeCategory;
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -42,7 +49,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
           </p>
         </div>
 
-        {/* Filter Controls: Search & Simple Tabs */}
+        {/* Filter Controls: Search & Requested Category Tabs */}
         <div className="mb-8 space-y-3">
           <div className="max-w-md mx-auto relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -59,16 +66,11 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
           </div>
 
           <div className="flex items-center justify-center gap-1.5 flex-wrap">
-            {[
-              { id: 'todos', label: 'Todos' },
-              { id: 'diplomado', label: 'Diplomados' },
-              { id: 'tecnico', label: 'Cursos Técnicos' },
-              { id: 'ingenieria', label: 'Ingeniería' },
-            ].map((tab) => (
+            {categories.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => handleCategoryChange(tab.id)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                   activeCategory === tab.id
                     ? 'bg-[#0A2540] text-white shadow-xs'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
@@ -106,7 +108,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
                     {/* 1 Single Elegant Badge */}
                     <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white text-[11px] font-bold">
                       <span className="bg-[#0A2540]/90 backdrop-blur-md px-2 py-0.5 rounded text-[10px] text-cyan-300 font-extrabold uppercase border border-slate-700">
-                        {course.category === 'diplomado' ? 'Diplomado' : 'Especialización'} • {course.hours || 120} HRS
+                        {course.category === 'diplomado' ? 'Capacitación' : course.category === 'tecnico' ? 'Carrera Técnica' : 'Ingeniería'} • {course.hours || 120} HRS
                       </span>
                       {course.startDate && (
                         <span className="text-[10px] text-slate-200 font-medium">
