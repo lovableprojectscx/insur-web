@@ -13,23 +13,22 @@ import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
 import { MobileBottomBar } from './components/MobileBottomBar';
+import { RegistrationModal } from './components/RegistrationModal';
 import { DiscountModal } from './components/DiscountModal';
 import type { LeadFormData } from './types';
 
 export function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const [isDiscountOpen, setIsDiscountOpen] = useState(false);
   const [leadData, setLeadData] = useState<LeadFormData | null>(null);
+
+  const handleOpenRegistration = () => {
+    setIsRegistrationOpen(true);
+  };
 
   const handleLeadSubmitted = (data: LeadFormData) => {
     setLeadData(data);
-    setIsModalOpen(true);
-  };
-
-  const handleOpenForm = () => {
-    const heroForm = document.getElementById('registro') || document.getElementById('hero');
-    if (heroForm) {
-      heroForm.scrollIntoView({ behavior: 'smooth' });
-    }
+    setIsDiscountOpen(true);
   };
 
   const handleSelectCategory = (_catId: string) => {
@@ -46,11 +45,11 @@ export function App() {
       <Preloader />
 
       {/* CERSA-Style Top Ribbon & Navbar */}
-      <Navbar onOpenForm={handleOpenForm} />
+      <Navbar onOpenForm={handleOpenRegistration} />
 
       <main>
-        {/* CERSA-Style White Hero Section */}
-        <HeroSection onSubmitLead={handleLeadSubmitted} />
+        {/* CERSA-Style White Hero Section with Popup Modal Trigger */}
+        <HeroSection onOpenForm={handleOpenRegistration} />
 
         {/* CERSA-Style "NUESTRAS ESCUELAS" (5 Vertical Cards + Orange Vest Engineer Banner) */}
         <CategoryGrid onSelectCategory={handleSelectCategory} />
@@ -59,12 +58,12 @@ export function App() {
         <InstitutionalAlliances />
 
         {/* CERSA-Style "MODELO DE CERTIFICADO" (3D Realistic Diploma Mockup & QR Verification) */}
-        <CertificateModel onOpenForm={handleOpenForm} />
+        <CertificateModel onOpenForm={handleOpenRegistration} />
 
         {/* Rich Visual Course Catalog Marketplace */}
-        <CourseCatalog onOpenForm={handleOpenForm} />
+        <CourseCatalog onOpenForm={handleOpenRegistration} />
 
-        {/* Expert Faculty / Plana Docente CIP */}
+        {/* Expert Faculty / Plana Docente CIP & Abogados */}
         <InstructorsSection />
 
         {/* Why Choose Us Features */}
@@ -86,12 +85,19 @@ export function App() {
       </div>
 
       {/* Mobile Sticky Bottom Bar */}
-      <MobileBottomBar onOpenForm={handleOpenForm} />
+      <MobileBottomBar onOpenForm={handleOpenRegistration} />
+
+      {/* Interactive Registration Form Popup Modal */}
+      <RegistrationModal
+        isOpen={isRegistrationOpen}
+        onClose={() => setIsRegistrationOpen(false)}
+        onSubmitLead={handleLeadSubmitted}
+      />
 
       {/* CERSA-Style Coupon Ticket Modal Popup */}
       <DiscountModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={isDiscountOpen}
+        onClose={() => setIsDiscountOpen(false)}
         leadData={leadData}
       />
     </div>

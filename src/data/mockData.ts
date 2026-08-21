@@ -40,7 +40,7 @@ export const INSTRUCTORS: Instructor[] = [
     specialty: 'Residencia de Obras Civiles y Modelado BIM',
     experience: '+14 años en Infraestructura Vial y Edificaciones',
     degree: 'Magíster en Gerencia de la Construcción',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'
+    avatar: '/assets/instructor_roberto.jpg'
   },
   {
     id: 'inst2',
@@ -50,7 +50,7 @@ export const INSTRUCTORS: Instructor[] = [
     specialty: 'Cálculo Sismorresistente SAP2000 & ETABS',
     experience: '+12 años en Consultoría y Proyectos Hidráulicos',
     degree: 'Ph.D. en Ingeniería Estructural',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80'
+    avatar: '/assets/instructor_vanessa.jpg'
   },
   {
     id: 'inst3',
@@ -60,17 +60,17 @@ export const INSTRUCTORS: Instructor[] = [
     specialty: 'Diseño Geométrico MTC y Movimiento de Tierras',
     experience: '+16 años en Megaproyectos Viales Nacionales',
     degree: 'Especialista en Ingeniería de Transportes',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'
+    avatar: '/assets/instructor_marco.jpg'
   },
   {
     id: 'inst4',
-    name: 'Mg. Ing. Gabriel Flores T.',
-    cipNumber: 'CIP N° 210452',
-    role: 'Especialista en Licitaciones OSCE & Ley Contrataciones',
-    specialty: 'Arbitraje, Valorizaciones y Liquidaciones de Obra',
-    experience: '+10 años en Gestión Pública y Arbitraje de Estado',
-    degree: 'Magíster en Derecho de la Construcción',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'
+    name: 'Mg. Abog. Gabriel Flores T.',
+    cipNumber: 'CAL N° 45892 / CIP',
+    role: 'Especialista en Licitaciones OSCE & Derecho de la Construcción',
+    specialty: 'Arbitraje de Obras, Valorizaciones y Liquidaciones',
+    experience: '+12 años en Gestión Pública y Asesoría Legal',
+    degree: 'Magíster en Derecho de la Construcción y Arbitraje',
+    avatar: '/assets/instructor_gabriel.jpg'
   }
 ];
 
