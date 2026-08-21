@@ -17,7 +17,7 @@ export const InstructorsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Instructors Grid - Pure Clean Design, Zero Boxes Under Text */}
+        {/* Instructors Grid - 2 Columns on Mobile / 4 on Desktop (Zero Boxes Under Text) */}
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {INSTRUCTORS.map((instructor, index) => (
             <motion.div
