@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Copy, Check, MessageSquare, X, Gift } from 'lucide-react';
+import { Copy, Check, MessageSquare, X, Ticket, Sparkles } from 'lucide-react';
 import type { LeadFormData } from '../types';
 
 interface DiscountModalProps {
@@ -16,10 +16,10 @@ export const DiscountModal = ({ isOpen, onClose, leadData }: DiscountModalProps)
   useEffect(() => {
     if (isOpen) {
       confetti({
-        particleCount: 100,
-        spread: 60,
-        origin: { y: 0.6 },
-        colors: ['#00A3E0', '#0A2540', '#00529B', '#F59E0B']
+        particleCount: 120,
+        spread: 70,
+        origin: { y: 0.5 },
+        colors: ['#1559ED', '#00A3E0', '#F59E0B', '#10B981']
       });
     }
   }, [isOpen]);
@@ -33,74 +33,87 @@ export const DiscountModal = ({ isOpen, onClose, leadData }: DiscountModalProps)
   };
 
   const whatsappMessage = encodeURIComponent(
-    `¡Hola Grupo INSUR Ayacucho! Mi nombre es ${leadData.fullName}. Acabo de registrarme con el código de descuento [${couponCode}] para el área de ${leadData.areaOfInterest}. Deseo activar mi 10% de descuento.`
+    `¡Hola Grupo INSUR! Mi nombre es ${leadData.fullName}. Acabo de registrarme con el código de descuento [${couponCode}] para ${leadData.areaOfInterest}. Deseo canjear mi 10% de descuento.`
   );
 
   const whatsappUrl = `https://wa.me/51966000111?text=${whatsappMessage}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/75 backdrop-blur-xs animate-in fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md animate-in fade-in">
       
-      <div className="relative w-full max-w-md rounded-2xl bg-[#0A2540] border border-slate-700 p-6 sm:p-7 text-white shadow-2xl">
+      {/* CERSA Screenshot 5 Ticket Coupon Popup Replica */}
+      <div className="relative w-full max-w-sm rounded-3xl bg-gradient-to-b from-[#1559ED] via-[#0A2540] to-[#061828] border-2 border-cyan-400/50 p-6 sm:p-7 text-white shadow-2xl overflow-hidden text-center">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 p-1.5 rounded-full bg-slate-900/60 text-white hover:bg-slate-900 transition-colors z-20"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* Top Header */}
-        <div className="text-center space-y-2">
-          <div className="w-12 h-12 mx-auto rounded-xl bg-[#00A3E0] flex items-center justify-center text-white shadow-md">
-            <Gift className="w-6 h-6" />
+        {/* Floating Sparkles Header */}
+        <div className="relative z-10 space-y-2">
+          
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow-md">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>¡FELICIDADES!</span>
           </div>
-          <span className="inline-block px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold">
-            REGISTRO EXITOSO
-          </span>
-          <h3 className="text-xl font-bold text-white tracking-tight">
-            ¡Bienvenido, {leadData.fullName.split(' ')[0]}!
+
+          <h3 className="text-2xl font-black text-white tracking-tight uppercase leading-none">
+            HAS ACCEDIDO A UN <br />
+            <span className="text-cyan-300">10% DE DESCUENTO</span>
           </h3>
-          <p className="text-xs text-slate-300">
-            Has reservado tu vacante con el <strong className="text-[#00A3E0]">10% de descuento exclusivo</strong> para <strong className="text-white">{leadData.areaOfInterest}</strong>.
+
+          <p className="text-xs text-blue-100 font-medium">
+            Hola <strong className="text-white">{leadData.fullName.split(' ')[0]}</strong>, tu cupón institucional ya se encuentra activo para <strong className="text-white">{leadData.areaOfInterest}</strong>.
           </p>
+
         </div>
 
-        {/* Coupon Code Box */}
-        <div className="my-5 p-3.5 rounded-xl bg-slate-900 border border-dashed border-slate-700 text-center space-y-1.5">
-          <p className="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Tu Código Promocional:</p>
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-2xl font-black text-[#00A3E0] font-mono tracking-wider">
+        {/* Ticket Voucher Box (Screenshot 5 Replica!) */}
+        <div className="my-5 p-4 rounded-2xl bg-white text-slate-900 shadow-xl border-2 border-dashed border-[#1559ED] relative space-y-2">
+          
+          <div className="flex items-center justify-between text-[11px] font-black text-[#1559ED] uppercase tracking-wider border-b border-slate-200 pb-1.5">
+            <span className="flex items-center gap-1">
+              <Ticket className="w-4 h-4 text-[#1559ED]" /> CUPÓN OFICIAL
+            </span>
+            <span>2026</span>
+          </div>
+
+          <div className="py-1">
+            <span className="text-2xl font-black text-[#0A2540] font-mono tracking-widest block">
               {couponCode}
             </span>
-            <button
-              onClick={handleCopy}
-              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-600 transition-colors flex items-center gap-1 text-[11px] font-semibold cursor-pointer"
-            >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copiado' : 'Copiar'}</span>
-            </button>
           </div>
+
+          <button
+            onClick={handleCopy}
+            className="w-full py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-extrabold flex items-center justify-center gap-1.5 transition-colors cursor-pointer border border-slate-300"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#1559ED]" />}
+            <span>{copied ? '¡CÓDIGO COPIADO!' : 'COPIAR CÓDIGO'}</span>
+          </button>
+
         </div>
 
-        {/* Actions */}
-        <div className="space-y-2">
+        {/* WhatsApp Green Action Button (Screenshot 5 Replica!) */}
+        <div className="space-y-2.5 relative z-10">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-3 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-colors"
+            className="w-full py-3.5 px-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 transition-all active:scale-95 border border-emerald-400"
           >
             <MessageSquare className="w-4 h-4 fill-current" />
-            <span>VALIDAR VOUCHER POR WHATSAPP</span>
+            <span>CANJEA TU CUPÓN POR WHATSAPP</span>
           </a>
           
           <button
             onClick={onClose}
-            className="w-full py-2 text-center text-xs text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+            className="w-full py-1 text-center text-[11px] text-slate-400 hover:text-white transition-colors cursor-pointer"
           >
-            Volver a la página
+            Cerrar ventana
           </button>
         </div>
 

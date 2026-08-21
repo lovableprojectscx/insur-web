@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { InstitutionalAlliances } from './components/InstitutionalAlliances';
 import { CategoryGrid } from './components/CategoryGrid';
-import { WhyChooseUs } from './components/WhyChooseUs';
+import { InstitutionalAlliances } from './components/InstitutionalAlliances';
+import { CertificateModel } from './components/CertificateModel';
 import { CourseCatalog } from './components/CourseCatalog';
 import { InstructorsSection } from './components/InstructorsSection';
+import { WhyChooseUs } from './components/WhyChooseUs';
 import { Testimonials } from './components/Testimonials';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
@@ -24,7 +25,7 @@ export function App() {
   };
 
   const handleOpenForm = () => {
-    const heroForm = document.getElementById('registration-form') || document.getElementById('hero');
+    const heroForm = document.getElementById('registro') || document.getElementById('hero');
     if (heroForm) {
       heroForm.scrollIntoView({ behavior: 'smooth' });
     }
@@ -38,30 +39,34 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-cyan-500 selection:text-white pb-14 sm:pb-0">
-      {/* Sticky Header Navigation */}
+    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-blue-600 selection:text-white pb-14 sm:pb-0">
+      
+      {/* CERSA-Style Top Ribbon & Navbar */}
       <Navbar onOpenForm={handleOpenForm} />
 
       <main>
-        {/* Hero Section with Interactive Lead Form Card */}
+        {/* CERSA-Style White Hero Section */}
         <HeroSection onSubmitLead={handleLeadSubmitted} />
 
-        {/* Institutional Backing & Alliances (CIP, Universities, OSCE) */}
-        <InstitutionalAlliances />
-
-        {/* 3-Column Main Schools & Categories Grid */}
+        {/* CERSA-Style "NUESTRAS ESCUELAS" (5 Vertical Cards + Orange Vest Engineer Banner) */}
         <CategoryGrid onSelectCategory={handleSelectCategory} />
 
-        {/* Why Choose Us Feature Grid */}
-        <WhyChooseUs />
+        {/* CERSA-Style "NUESTRAS ALIANZAS INSTITUCIONALES" (CIP & ICA Round Seals) */}
+        <InstitutionalAlliances />
 
-        {/* Filterable Course Catalog Marketplace */}
+        {/* CERSA-Style "MODELO DE CERTIFICADO" (3D Realistic Diploma Mockup & QR Verification) */}
+        <CertificateModel onOpenForm={handleOpenForm} />
+
+        {/* CERSA-Style Course Catalog Marketplace */}
         <CourseCatalog onOpenForm={handleOpenForm} />
 
-        {/* Expert Instructors & Faculty */}
+        {/* Expert Faculty / Plana Docente CIP */}
         <InstructorsSection />
 
-        {/* Success Stories Testimonials */}
+        {/* Why Choose Us Features */}
+        <WhyChooseUs />
+
+        {/* Verified Student Testimonials */}
         <Testimonials />
 
         {/* FAQ Accordion */}
@@ -76,10 +81,10 @@ export function App() {
         <WhatsAppFloating />
       </div>
 
-      {/* Optimized Sticky Mobile Bottom Bar */}
+      {/* Mobile Sticky Bottom Bar */}
       <MobileBottomBar onOpenForm={handleOpenForm} />
 
-      {/* Interactive Coupon Discount Modal */}
+      {/* CERSA-Style Coupon Ticket Modal Popup */}
       <DiscountModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
