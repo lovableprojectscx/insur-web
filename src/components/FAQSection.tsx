@@ -50,14 +50,14 @@ export const FAQSection: React.FC = () => {
               >
                 <button
                   onClick={() => toggleIndex(index)}
-                  className="w-full p-5 text-left font-extrabold text-[#0A2540] hover:text-[#00529B] flex items-center justify-between gap-4 transition-colors cursor-pointer"
+                  className="w-full p-5 text-left font-extrabold text-[#0A2540] hover:text-[#00A3E0] flex items-center justify-between gap-4 transition-colors cursor-pointer"
                 >
                   <span className="text-base">{item.question}</span>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <ChevronDown className="w-5 h-5 text-[#00529B] shrink-0" />
+                    <ChevronDown className="w-5 h-5 text-[#00A3E0] shrink-0" />
                   </motion.div>
                 </button>
 
@@ -87,17 +87,17 @@ export const FAQSection: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-12 text-center p-6 rounded-2xl bg-slate-100 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-12 text-center p-6 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm"
         >
           <div className="text-left">
-            <h4 className="font-bold text-[#0A2540]">¿Tienes una consulta específica?</h4>
-            <p className="text-xs text-slate-600 font-medium">Nuestros asesores de admisión están disponibles en tiempo real.</p>
+            <h4 className="font-black text-[#0A2540]">¿Tienes una consulta adicional?</h4>
+            <p className="text-xs text-slate-500 font-medium">Nuestros asesores de admisión atienden tus dudas al instante.</p>
           </div>
           <a
             href="https://wa.me/51966000111?text=Hola%20Grupo%20INSUR,%20tengo%20una%20consulta%20adicional."
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold flex items-center gap-2 shadow-md transition-all shrink-0 active:scale-95"
+            className="px-5 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black flex items-center gap-2 shadow-md transition-all shrink-0 active:scale-95 uppercase tracking-wide"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Consultar por WhatsApp</span>
