@@ -27,7 +27,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#00A3E0] selection:text-slate-950 pb-16 sm:pb-0">
+    <div className="min-h-screen bg-white text-slate-900 font-['Inter',sans-serif] selection:bg-[#00A3E0] selection:text-slate-950 pb-16 sm:pb-0">
       
       {/* Intro Preloader */}
       <Preloader />
