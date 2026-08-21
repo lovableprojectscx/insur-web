@@ -103,37 +103,50 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
 
           </motion.div>
 
-          {/* Right Column: CERSA-Style 3D Smartphone & Tablet App Mockup Graphic */}
+          {/* Right Column: Engineer Photo Cutout (Replacing the tablet mockup as requested!) */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 flex items-center justify-center"
           >
-            <div className="relative w-full max-w-md cursor-pointer group" onClick={onOpenForm}>
+            <div className="relative w-full max-w-sm sm:max-w-md flex flex-col items-center cursor-pointer group" onClick={onOpenForm}>
               
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group-hover:scale-102 transition-transform duration-500">
+              {/* Engineer Cutout Image */}
+              <div className="relative w-full flex items-center justify-center">
                 <img
-                  src="/assets/hero_app_mockup.jpg"
-                  alt="Aula Virtual App Grupo INSUR en Smartphone y Tablet"
-                  className="w-full h-auto object-cover"
+                  src="/assets/engineer_user_cutout.png"
+                  alt="Ingeniero Civil Residente de Obras Grupo INSUR"
+                  className="w-full h-auto max-h-[460px] sm:max-h-[520px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.25)] group-hover:scale-105 transition-transform duration-500"
                 />
-                
-                {/* Floating 10% OFF Badge on App Mockup */}
-                <div className="absolute top-4 right-4 bg-[#D92D20] text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-lg animate-bounce">
+
+                {/* Floating 10% OFF Badge */}
+                <div className="absolute top-6 right-2 sm:right-4 bg-[#D92D20] text-white text-[11px] font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-xl animate-bounce border-2 border-white">
                   10% OFF EXCLUSIVO
                 </div>
 
-                {/* Bottom Interactive Trigger Banner */}
-                <div className="p-4 bg-gradient-to-r from-[#1559ED] to-[#00A3E0] text-white text-center flex items-center justify-between">
-                  <div className="text-left">
-                    <p className="text-[10px] font-bold text-cyan-200 uppercase">Campus Virtual Activo</p>
-                    <p className="text-xs font-black">Inscríbete Hoy Mismo</p>
+                {/* Floating CIP Trust Seal Chip */}
+                <div className="absolute bottom-6 left-2 sm:left-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-200 shadow-xl flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#1559ED] shrink-0 border border-blue-200">
+                    <ShieldCheck className="w-5 h-5 text-[#1559ED]" />
                   </div>
-                  <span className="px-3 py-1 rounded-xl bg-white text-[#1559ED] text-xs font-black uppercase shadow-xs">
-                    Abrir Formulario →
-                  </span>
+                  <div className="text-left">
+                    <p className="text-[11px] font-black text-[#0A2540] leading-none">Acreditación CIP Oficial</p>
+                    <p className="text-[9px] text-slate-500 font-bold mt-0.5">Válido para Licitaciones</p>
+                  </div>
                 </div>
+              </div>
+
+              {/* Bottom Interactive Trigger Banner */}
+              <div className="mt-2 w-full p-3.5 rounded-2xl bg-[#1559ED] hover:bg-blue-700 text-white text-center flex items-center justify-between shadow-lg transition-all border border-blue-400">
+                <div className="text-left">
+                  <p className="text-[10px] font-bold text-cyan-200 uppercase">Convocatoria 2026</p>
+                  <p className="text-xs font-black">Inscríbete Hoy Mismo</p>
+                </div>
+                <span className="px-3 py-1.5 rounded-xl bg-white text-[#1559ED] text-xs font-black uppercase shadow-xs flex items-center gap-1">
+                  <span>Reclamar 10% OFF</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
               </div>
 
             </div>
