@@ -6,6 +6,7 @@ import { CategoryGrid } from './components/CategoryGrid';
 import { CertificateAndAlliances } from './components/CertificateAndAlliances';
 import { CourseCatalog } from './components/CourseCatalog';
 import { InstructorsSection } from './components/InstructorsSection';
+import { SlideNavigator } from './components/SlideNavigator';
 import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
 import { MobileBottomBar } from './components/MobileBottomBar';
@@ -35,32 +36,35 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-blue-600 selection:text-white pb-14 sm:pb-0">
+    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-cyan-500 selection:text-slate-950 pb-14 sm:pb-0">
       
       {/* Intro Preloader */}
       <Preloader />
+
+      {/* Floating PPT Slide Deck Navigator (Right-Side) */}
+      <SlideNavigator />
 
       {/* Top Ribbon & Navbar */}
       <Navbar onOpenForm={handleOpenRegistration} />
 
       <main>
-        {/* 1. Compact Hero Presentation (Slide Deck) */}
+        {/* SLIDE 01: Keynote Hero Presentation */}
         <HeroSection onOpenForm={handleOpenRegistration} />
 
-        {/* 2. 5 Compact Visual School Cards */}
+        {/* SLIDE 02: 5 Escuelas de Especialización (Expandable Accordion) */}
         <CategoryGrid onSelectCategory={handleSelectCategory} />
 
-        {/* 3. Combined Certificate Model & Official Alliances (CIP & ICA) */}
+        {/* SLIDE 03: Alianzas Oficiales & Modelo de Certificado 3D con QR */}
         <CertificateAndAlliances onOpenForm={handleOpenRegistration} />
 
-        {/* 4. Visual Course Marketplace */}
+        {/* SLIDE 04: Programas y Diplomados con Temario Oficial */}
         <CourseCatalog onOpenForm={handleOpenRegistration} />
 
-        {/* 5. Plana Docente CIP & Abogados */}
+        {/* SLIDE 05: Plana Docente CIP & Abogados Especialistas */}
         <InstructorsSection />
       </main>
 
-      {/* Compact Footer */}
+      {/* Footer */}
       <Footer />
 
       {/* Floating WhatsApp Action for Desktop */}

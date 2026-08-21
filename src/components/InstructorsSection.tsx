@@ -5,18 +5,30 @@ import { INSTRUCTORS } from '../data/mockData';
 
 export const InstructorsSection: React.FC = () => {
   return (
-    <section id="docentes" className="py-16 sm:py-20 bg-slate-50 text-slate-900 relative overflow-hidden border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="docentes" className="py-20 lg:py-28 bg-white text-slate-900 relative overflow-hidden border-b border-slate-200 min-h-screen flex flex-col justify-center">
+      
+      {/* Slide Badge */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mb-6">
+        <div className="inline-flex items-center gap-2 bg-[#0A2540] text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-700">
+          <span className="w-2 h-2 rounded-full bg-[#00A3E0] animate-pulse"></span>
+          <span>SLIDE 05 / 05 • PLANA DOCENTE COLEGIADA CIP & CAL</span>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#1559ED] text-xs font-black uppercase tracking-wider mb-2">
-            <UserCheck className="w-4 h-4 text-[#1559ED]" />
-            <span>PLANA DOCENTE DESTACADA</span>
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#00A3E0] text-xs font-black uppercase tracking-wider mb-2">
+            <UserCheck className="w-4 h-4 text-[#00A3E0]" />
+            <span>PLANA DOCENTE DE PRIMER NIVEL</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A2540] tracking-tight uppercase">
             Ingenieros y Abogados Especialistas
           </h2>
+          <p className="text-xs sm:text-sm text-slate-500 mt-2 font-medium">
+            Docentes colegiados activos en los principales megaproyectos y contrataciones del Perú.
+          </p>
         </div>
 
         {/* Instructors Grid */}
@@ -24,12 +36,12 @@ export const InstructorsSection: React.FC = () => {
           {INSTRUCTORS.map((instructor, index) => (
             <motion.div
               key={instructor.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -6 }}
-              className="bg-white rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all overflow-hidden flex flex-col justify-between group"
+              whileHover={{ y: -8 }}
+              className="bg-slate-50 rounded-3xl border border-slate-200 shadow-md hover:shadow-xl hover:border-[#00A3E0]/60 transition-all overflow-hidden flex flex-col justify-between group"
             >
               <div>
                 {/* Photo */}
@@ -48,24 +60,24 @@ export const InstructorsSection: React.FC = () => {
 
                 {/* Info Body */}
                 <div className="p-5 space-y-2 text-center">
-                  <h3 className="text-base font-black text-[#0A2540] tracking-tight leading-snug group-hover:text-[#1559ED] transition-colors">
+                  <h3 className="text-base font-black text-[#0A2540] tracking-tight leading-snug group-hover:text-[#00A3E0] transition-colors">
                     {instructor.name}
                   </h3>
-                  <p className="text-xs text-[#1559ED] font-bold">
+                  <p className="text-xs text-[#00A3E0] font-bold">
                     {instructor.degree}
                   </p>
 
-                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200 mt-1">
-                    <Award className="w-3.5 h-3.5 text-[#1559ED]" />
+                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-white px-3 py-1.5 rounded-xl border border-slate-200 mt-1 shadow-2xs">
+                    <Award className="w-3.5 h-3.5 text-[#00A3E0]" />
                     <span>{instructor.role}</span>
                   </div>
                 </div>
               </div>
 
               {/* Card Footer */}
-              <div className="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-center text-[11px] font-bold text-emerald-700">
+              <div className="p-3 bg-white border-t border-slate-200 flex items-center justify-center text-[11px] font-bold text-emerald-700">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Docente Acreditado
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Docente Acreditado CIP
                 </span>
               </div>
             </motion.div>
