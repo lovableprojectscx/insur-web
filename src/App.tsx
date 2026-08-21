@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { BenefitTicker } from './components/BenefitTicker';
 import { CourseCatalog } from './components/CourseCatalog';
 import { CertificateAndAlliances } from './components/CertificateAndAlliances';
 import { InstructorsSection } from './components/InstructorsSection';
@@ -39,13 +40,16 @@ export function App() {
         {/* 1. Official Hero Banner */}
         <HeroSection onOpenForm={handleOpenRegistration} />
 
-        {/* 2. Catálogo de Cursos y Diplomados */}
+        {/* 2. Auto-Scrolling Benefit Ribbon */}
+        <BenefitTicker />
+
+        {/* 3. Catálogo de Cursos y Diplomados */}
         <CourseCatalog onOpenForm={handleOpenRegistration} />
 
-        {/* 3. Certificación y Alianzas CIP / ICA */}
+        {/* 4. Certificación y Alianzas CIP / ICA */}
         <CertificateAndAlliances onOpenForm={handleOpenRegistration} />
 
-        {/* 4. Plana Docente CIP & Abogados */}
+        {/* 5. Plana Docente CIP & Abogados */}
         <InstructorsSection />
       </main>
 
