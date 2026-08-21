@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ArrowRight, ShieldCheck, CheckCircle2, Phone } from 'lucide-react';
+import { Search, ArrowRight, ShieldCheck, CheckCircle2, Phone, ChevronDown } from 'lucide-react';
 import { FEATURED_COURSES } from '../data/mockData';
 import type { Course } from '../types';
 
@@ -12,6 +12,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
   const [activeCategory, setActiveCategory] = useState<string>('todos');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCourseSyllabus, setSelectedCourseSyllabus] = useState<Course | null>(null);
+  const [visibleCount, setVisibleCount] = useState<number>(3);
 
   const filteredCourses = FEATURED_COURSES.filter((course) => {
     const matchesCategory = activeCategory === 'todos' || course.category === activeCategory;
@@ -19,6 +20,13 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
                           course.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const displayedCourses = filteredCourses.slice(0, visibleCount);
+
+  const handleCategoryChange = (catId: string) => {
+    setActiveCategory(catId);
+    setVisibleCount(3);
+  };
 
   return (
     <section id="catalogo" className="py-8 sm:py-12 bg-white text-slate-900 relative">
@@ -42,7 +50,10 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
               type="text"
               placeholder="Buscar especialidad o diplomado..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setVisibleCount(3);
+              }}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs font-medium focus:outline-none focus:border-[#00A3E0] focus:bg-white transition-all"
             />
           </div>
@@ -56,7 +67,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveCategory(tab.id)}
+                onClick={() => handleCategoryChange(tab.id)}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   activeCategory === tab.id
                     ? 'bg-[#0A2540] text-white shadow-xs'
@@ -69,10 +80,10 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
           </div>
         </div>
 
-        {/* Clean, Professional Course Cards Grid */}
+        {/* Clean 3 Course Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredCourses.map((course) => (
+            {displayedCourses.map((course) => (
               <motion.div
                 key={course.id}
                 layout
@@ -105,7 +116,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
                     </div>
                   </div>
 
-                  {/* Clean Info Body - No Generic Text Clutter */}
+                  {/* Clean Info Body */}
                   <div className="p-4 space-y-2">
                     <h3 className="text-sm sm:text-base font-bold text-[#0A2540] group-hover:text-[#00A3E0] transition-colors leading-snug">
                       {course.title}
@@ -153,6 +164,19 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
             ))}
           </AnimatePresence>
         </div>
+
+        {/* Cargar Más Button */}
+        {visibleCount < filteredCourses.length && (
+          <div className="mt-8 text-center">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 3)}
+              className="px-6 py-2.5 rounded-full border-2 border-[#0A2540] text-[#0A2540] hover:bg-[#0A2540] hover:text-white font-bold text-xs uppercase tracking-wider transition-all inline-flex items-center gap-2 cursor-pointer shadow-xs active:scale-95"
+            >
+              <span>Cargar Más Programas</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+          </div>
+        )}
 
       </div>
 
