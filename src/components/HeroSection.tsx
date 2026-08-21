@@ -6,21 +6,19 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
   return (
-    <section id="hero" className="pt-16 sm:pt-20 pb-4 sm:pb-8 bg-white flex items-center justify-center">
-      <div className="w-full max-w-7xl mx-auto px-0 sm:px-4">
-        
-        {/* Clean Official Banner - Without Borders, Frames or Box Overlays */}
-        <div
-          onClick={onOpenForm}
-          className="w-full cursor-pointer overflow-hidden transition-opacity hover:opacity-95"
-        >
-          <img
-            src="/assets/hero_banner_official.png"
-            alt="Inscríbete ahora y obtén un segundo curso gratis - Grupo INSUR"
-            className="w-full h-auto object-contain block"
-          />
-        </div>
-
+    <section id="hero" className="pt-12 sm:pt-16 pb-2 sm:pb-6 bg-white w-full overflow-hidden">
+      {/* 100% Full-Width Edge-to-Edge Container in Maximum High Resolution */}
+      <div 
+        onClick={onOpenForm}
+        className="w-full cursor-pointer block select-none"
+      >
+        <img
+          src="/assets/hero_banner_official.png"
+          alt="Inscríbete ahora haciendo clic aquí y obtén un segundo curso gratis - Grupo INSUR"
+          className="w-full h-auto max-h-[85vh] object-cover sm:object-contain object-center block mx-auto"
+          loading="eager"
+          fetchPriority="high"
+        />
       </div>
     </section>
   );
