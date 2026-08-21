@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { DiscountModal } from './components/DiscountModal';
+import { InstitutionalAlliances } from './components/InstitutionalAlliances';
 import { CategoryGrid } from './components/CategoryGrid';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { CourseCatalog } from './components/CourseCatalog';
+import { InstructorsSection } from './components/InstructorsSection';
 import { Testimonials } from './components/Testimonials';
 import { FAQSection } from './components/FAQSection';
 import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
 import { MobileBottomBar } from './components/MobileBottomBar';
+import { DiscountModal } from './components/DiscountModal';
 import type { LeadFormData } from './types';
 
 export function App() {
@@ -22,18 +24,17 @@ export function App() {
   };
 
   const handleOpenForm = () => {
-    const heroForm = document.getElementById('hero');
+    const heroForm = document.getElementById('registration-form') || document.getElementById('hero');
     if (heroForm) {
       heroForm.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleSelectCategory = (_catId: string) => {
-    handleOpenForm();
-  };
-
-  const handleSelectCourse = (_courseTitle: string) => {
-    handleOpenForm();
+    const catalogSection = document.getElementById('catalogo');
+    if (catalogSection) {
+      catalogSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -45,14 +46,20 @@ export function App() {
         {/* Hero Section with Interactive Lead Form Card */}
         <HeroSection onSubmitLead={handleLeadSubmitted} />
 
-        {/* 3-Column Main Categories Grid */}
+        {/* Institutional Backing & Alliances (CIP, Universities, OSCE) */}
+        <InstitutionalAlliances />
+
+        {/* 3-Column Main Schools & Categories Grid */}
         <CategoryGrid onSelectCategory={handleSelectCategory} />
 
         {/* Why Choose Us Feature Grid */}
         <WhyChooseUs />
 
-        {/* Filterable Course Catalog Showcase */}
-        <CourseCatalog onSelectCourse={handleSelectCourse} />
+        {/* Filterable Course Catalog Marketplace */}
+        <CourseCatalog onOpenForm={handleOpenForm} />
+
+        {/* Expert Instructors & Faculty */}
+        <InstructorsSection />
 
         {/* Success Stories Testimonials */}
         <Testimonials />

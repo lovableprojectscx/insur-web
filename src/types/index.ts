@@ -14,6 +14,8 @@ export interface ProgramCategory {
   image: string;
   coursesCount: number;
   featuredPrograms: string[];
+  iconName?: string;
+  colorAccent?: string;
 }
 
 export interface Course {
@@ -26,6 +28,12 @@ export interface Course {
   students: number;
   description: string;
   syllabus: string[];
+  price?: number;
+  originalPrice?: number;
+  badgeTag?: string;
+  instructorName?: string;
+  startDate?: string;
+  hours?: number;
 }
 
 export interface Testimonial {
@@ -37,4 +45,24 @@ export interface Testimonial {
   comment: string;
   rating: number;
   avatar: string;
+  verified?: boolean;
+}
+
+export interface Instructor {
+  id: string;
+  name: string;
+  cipNumber: string;
+  role: string;
+  specialty: string;
+  experience: string;
+  avatar: string;
+  degree: string;
+}
+
+export interface Alliance {
+  id: string;
+  name: string;
+  type: string;
+  badge: string;
+  logo: string;
 }

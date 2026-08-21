@@ -1,213 +1,288 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Star, Users, BookOpen, ArrowRight, Award, CheckCircle2, Phone, Calendar, Download, ShieldCheck } from 'lucide-react';
 import { FEATURED_COURSES } from '../data/mockData';
 import type { Course } from '../types';
-import { BookOpen, Clock, Laptop, ArrowRight, X, Award, CheckCircle2 } from 'lucide-react';
 
 interface CourseCatalogProps {
-  onSelectCourse: (courseTitle: string) => void;
+  onOpenForm: () => void;
 }
 
-export const CourseCatalog = ({ onSelectCourse }: CourseCatalogProps) => {
-  const [activeTab, setActiveTab] = useState<'all' | 'diplomado' | 'tecnico' | 'ingenieria'>('all');
-  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
+  const [activeCategory, setActiveCategory] = useState<string>('todos');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedCourseSyllabus, setSelectedCourseSyllabus] = useState<Course | null>(null);
 
-  const filteredCourses = activeTab === 'all' 
-    ? FEATURED_COURSES 
-    : FEATURED_COURSES.filter(c => c.category === activeTab);
+  const filteredCourses = FEATURED_COURSES.filter((course) => {
+    const matchesCategory = activeCategory === 'todos' || course.category === activeCategory;
+    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          course.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
-    <section id="catalogo" className="py-24 lg:py-28 bg-white border-b border-slate-200">
+    <section id="catalogo" className="py-20 bg-slate-50 text-slate-900 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Scroll Reveal */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-5"
-        >
-          <div>
-            <span className="px-3.5 py-1 rounded bg-[#D92D20] text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
-              CONVOCATORIA Y ESPECIALIZACIONES 2026
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0A2540] tracking-tight mt-1">
-              Catálogo de Programas 2026
-            </h2>
+        {/* Section Title */}
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-200 text-[#00529B] text-xs font-black uppercase tracking-wider mb-3">
+            <BookOpen className="w-4 h-4 text-[#00529B]" />
+            <span>CATÁLOGO ACADÉMICO CONVOCATORIA 2026</span>
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl font-black text-[#0A2540] tracking-tight leading-tight">
+            Programas y Cursos de Especialización Profesional
+          </h2>
+          
+          <p className="text-xs sm:text-sm text-slate-600 mt-2 font-medium">
+            Selecciona tu programa de interés. Todos nuestros cursos incluyen certificado oficial universitario con código QR verificable y campus 24/7.
+          </p>
+        </div>
+
+        {/* Filter Controls: Search & Category Tabs */}
+        <div className="mb-10 space-y-4">
+          
+          {/* Instant Search Input Bar */}
+          <div className="max-w-xl mx-auto relative">
+            <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="Buscar curso por nombre (ej. Residencia, BIM, SAP2000, Topografía)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white border-2 border-slate-200 text-slate-900 placeholder-slate-400 text-xs font-semibold shadow-sm focus:outline-none focus:border-[#00529B] focus:ring-2 focus:ring-[#00529B]/20 transition-all"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-600"
+              >
+                Limpiar
+              </button>
+            )}
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap gap-2 p-1.5 rounded-xl bg-slate-100 border border-slate-200">
+          {/* Category Filter Tabs */}
+          <div className="flex items-center justify-center gap-2 flex-wrap pt-2">
             {[
-              { id: 'all', label: 'Todos' },
-              { id: 'diplomado', label: 'Diplomados' },
-              { id: 'tecnico', label: 'Técnicos' },
-              { id: 'ingenieria', label: 'Ingeniería' }
-            ].map(tab => (
+              { id: 'todos', label: 'Todos los Programas' },
+              { id: 'diplomado', label: 'Diplomados Ejecutivos' },
+              { id: 'tecnico', label: 'Carreras Técnicas' },
+              { id: 'ingenieria', label: 'Ingeniería & Obras' },
+            ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 py-2 rounded-lg font-bold text-xs transition-all cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-[#0A2540] text-white shadow-md'
-                    : 'text-slate-600 hover:text-slate-900'
+                onClick={() => setActiveCategory(tab.id)}
+                className={`px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all cursor-pointer shadow-xs ${
+                  activeCategory === tab.id
+                    ? 'bg-[#00529B] text-white shadow-md scale-105'
+                    : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-100'
                 }`}
               >
                 {tab.label}
               </button>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Course Cards Grid with Motion AnimatePresence */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence>
+        {/* Course Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <AnimatePresence mode="popLayout">
             {filteredCourses.map((course) => (
               <motion.div
-                layout
                 key={course.id}
+                layout
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
-                className="clean-card rounded-2xl p-6 border border-slate-200 flex flex-col justify-between"
+                className="bg-white rounded-2xl border-2 border-slate-200 shadow-md hover:shadow-xl hover:border-[#00529B]/50 transition-all overflow-hidden flex flex-col justify-between group"
               >
-                <div className="space-y-3">
-                  
-                  {/* Category Pill & Rating Badge */}
-                  <div className="flex flex-wrap items-center justify-between gap-1.5 text-xs">
-                    <span className="px-2.5 py-0.5 rounded bg-slate-100 text-[#0A2540] font-bold uppercase text-[10px] tracking-wider border border-slate-200">
-                      {course.category}
-                    </span>
-                    <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-bold border border-slate-200">
-                      Puntaje: {course.rating}/5.0 ({course.students} alumnos)
+                <div>
+                  {/* Card Header Banner */}
+                  <div className="bg-[#0A2540] text-white p-4 relative overflow-hidden">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <span className="bg-[#D92D20] text-white text-[10px] font-black px-2.5 py-0.5 rounded-md uppercase tracking-wider shadow-sm">
+                        {course.badgeTag || 'CONVOCATORIA 2026'}
+                      </span>
+                      <span className="bg-[#00A3E0] text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-md uppercase tracking-wider">
+                        {course.hours} HRS
+                      </span>
+                    </div>
+
+                    <h3 className="text-base font-black tracking-tight leading-snug text-white group-hover:text-cyan-300 transition-colors">
+                      {course.title}
+                    </h3>
+
+                    {/* Start Date Chip */}
+                    {course.startDate && (
+                      <div className="mt-2.5 inline-flex items-center gap-1.5 text-[11px] text-slate-300 font-semibold bg-[#061828]/80 px-2.5 py-1 rounded-md border border-slate-700">
+                        <Calendar className="w-3.5 h-3.5 text-[#00A3E0]" />
+                        <span>{course.startDate}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Course Body Info */}
+                  <div className="p-5 space-y-3.5">
+                    
+                    {/* Instructor Badge */}
+                    {course.instructorName && (
+                      <div className="flex items-center gap-2 text-xs font-bold text-[#00529B] bg-slate-100 p-2.5 rounded-xl border border-slate-200">
+                        <Award className="w-4 h-4 text-[#00529B] shrink-0" />
+                        <span className="truncate">{course.instructorName}</span>
+                      </div>
+                    )}
+
+                    <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                      {course.description}
+                    </p>
+
+                    {/* Metrics Row: Rating, Students, Modality */}
+                    <div className="grid grid-cols-2 gap-2 pt-2 text-[11px] font-bold text-slate-700">
+                      <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                        <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                        <span>{course.rating} / 5.0</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                        <Users className="w-3.5 h-3.5 text-[#00529B]" />
+                        <span>+{course.students} Alumnos</span>
+                      </div>
+                    </div>
+
+                    {/* Benefits Included Checklist */}
+                    <div className="pt-2 space-y-1.5 text-[11px] font-semibold text-slate-600">
+                      <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span>Clases 100% Virtuales En Vivo + Campus 24/7</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#00529B] shrink-0" />
+                        <span>Certificado Oficial Universitario con Código QR</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Card Action Footer */}
+                <div className="p-5 pt-0 space-y-3">
+                  {/* Price Tag Row */}
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-200">
+                    <div>
+                      <span className="text-[10px] text-slate-400 line-through font-bold block">
+                        Precio Regular: S/ {course.originalPrice || 500}
+                      </span>
+                      <span className="text-base font-black text-[#0A2540]">
+                        Inversión: S/ {course.price || 450}
+                      </span>
+                    </div>
+                    <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-1 rounded-md border border-emerald-200">
+                      10% OFF INCLUIDO
                     </span>
                   </div>
 
-                  {/* Course Title */}
-                  <h3 className="text-lg font-bold text-[#0A2540] leading-snug">
-                    {course.title}
-                  </h3>
+                  {/* Buttons Grid */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => setSelectedCourseSyllabus(course)}
+                      className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs transition-colors flex items-center justify-center gap-1.5 border border-slate-300"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Ver Temario</span>
+                    </button>
 
-                  {/* Description */}
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                    {course.description}
-                  </p>
-
-                  {/* Modality Metrics */}
-                  <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-semibold">
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-[#00A3E0]" />
-                      <span>{course.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Laptop className="w-3.5 h-3.5 text-[#00A3E0]" />
-                      <span>{course.modality}</span>
-                    </div>
+                    <button
+                      onClick={onOpenForm}
+                      className="py-2.5 px-3 rounded-xl bg-[#00529B] hover:bg-[#0A2540] text-white font-extrabold text-xs transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
+                    >
+                      <span>Inscribirme</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
                   </div>
 
-                </div>
-
-                {/* Card CTA Actions */}
-                <div className="pt-5 flex gap-2">
-                  <button
-                    onClick={() => setSelectedCourse(course)}
-                    className="flex-1 py-2.5 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-[#0A2540] font-bold text-xs transition-colors flex items-center justify-center gap-1 border border-slate-200 cursor-pointer"
+                  {/* Direct WhatsApp Consult Link */}
+                  <a
+                    href={`https://wa.me/51966000111?text=Hola%20Grupo%20INSUR,%20deseo%20informaci%C3%B3n%20y%20el%20sílabus%20del%20curso:%20${encodeURIComponent(course.title)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-[11px] transition-colors flex items-center justify-center gap-1.5 border border-emerald-200"
                   >
-                    <BookOpen className="w-3.5 h-3.5" />
-                    <span>Syllabus</span>
-                  </button>
-
-                  <button
-                    onClick={() => onSelectCourse(course.title)}
-                    className="flex-1 py-2.5 px-3 rounded-lg bg-[#00529B] hover:bg-[#0A2540] text-white font-bold text-xs transition-colors flex items-center justify-center gap-1 cursor-pointer shadow-sm active:scale-95"
-                  >
-                    <span>Inscribirse</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                    <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Consultar por WhatsApp</span>
+                  </a>
                 </div>
-
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
-      </div>
-
-      {/* Course Detail Modal */}
-      <AnimatePresence>
-        {selectedCourse && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs"
-          >
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-5"
+        {/* Syllabus Modal Popup */}
+        <AnimatePresence>
+          {selectedCourseSyllabus && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4"
+              onClick={() => setSelectedCourseSyllabus(null)}
             >
-              <button
-                onClick={() => setSelectedCourse(null)}
-                className="absolute top-4 right-4 p-1.5 rounded-lg bg-slate-100 text-slate-500 hover:text-slate-800 transition-colors"
+              <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                className="bg-white text-slate-900 rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border-2 border-slate-200 overflow-hidden relative"
+                onClick={(e) => e.stopPropagation()}
               >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#0A2540] text-white flex items-center justify-center font-bold">
-                  <Award className="w-5 h-5" />
+                <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-[#00529B]" />
+                    <h3 className="font-black text-sm text-[#0A2540] uppercase tracking-wide">
+                      Temario Oficial & Módulos
+                    </h3>
+                  </div>
+                  <button
+                    onClick={() => setSelectedCourseSyllabus(null)}
+                    className="w-8 h-8 rounded-full bg-slate-100 text-slate-500 font-bold text-xs flex items-center justify-center hover:bg-slate-200"
+                  >
+                    ✕
+                  </button>
                 </div>
-                <div>
-                  <span className="text-[11px] font-extrabold text-[#00A3E0] uppercase tracking-wider">Malla Académica Oficial</span>
-                  <h3 className="text-xl font-extrabold text-[#0A2540]">{selectedCourse.title}</h3>
-                </div>
-              </div>
 
-              <div className="space-y-2">
-                <h4 className="text-xs font-extrabold text-[#0A2540] uppercase">Módulos del Programa:</h4>
-                <div className="grid grid-cols-1 gap-2">
-                  {selectedCourse.syllabus.map((module, i) => (
-                    <div key={i} className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center gap-2 text-xs font-semibold text-slate-800">
-                      <CheckCircle2 className="w-4 h-4 text-[#00A3E0] shrink-0" />
-                      <span>{module}</span>
+                <h4 className="font-black text-base text-[#0A2540] mb-2 leading-snug">
+                  {selectedCourseSyllabus.title}
+                </h4>
+                <p className="text-xs text-slate-600 mb-4 font-medium">
+                  {selectedCourseSyllabus.duration} • Modalidad 100% Virtual En Vivo
+                </p>
+
+                <div className="space-y-2.5 max-h-60 overflow-y-auto pr-1 mb-6">
+                  {selectedCourseSyllabus.syllabus.map((item, idx) => (
+                    <div key={idx} className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-bold text-slate-800 flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#00529B] shrink-0 mt-0.5" />
+                      <span>{item}</span>
                     </div>
                   ))}
                 </div>
-              </div>
 
-              <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={() => {
-                    const title = selectedCourse.title;
-                    setSelectedCourse(null);
-                    onSelectCourse(title);
-                  }}
-                  className="flex-1 py-3 rounded-lg bg-[#00529B] hover:bg-[#0A2540] text-white font-extrabold text-xs tracking-wider transition-colors shadow-md"
-                >
-                  OBTENER DESCUENTO EN ESTE CURSO
-                </button>
-                <button
-                  onClick={() => setSelectedCourse(null)}
-                  className="py-3 px-4 rounded-lg bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200 transition-colors"
-                >
-                  Cerrar
-                </button>
-              </div>
-
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => {
+                      setSelectedCourseSyllabus(null);
+                      onOpenForm();
+                    }}
+                    className="flex-1 py-3 px-4 rounded-xl bg-[#00529B] hover:bg-[#0A2540] text-white font-extrabold text-xs uppercase tracking-wider shadow-md"
+                  >
+                    Inscribirme con 10% OFF
+                  </button>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
+      </div>
     </section>
   );
 };
