@@ -22,14 +22,6 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
 
   return (
     <section id="catalogo" className="py-20 lg:py-28 bg-slate-50 text-slate-900 relative border-b border-slate-200 min-h-screen flex flex-col justify-center">
-      
-      {/* Slide Badge */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mb-6">
-        <div className="inline-flex items-center gap-2 bg-[#0A2540] text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-700">
-          <span className="w-2 h-2 rounded-full bg-[#00A3E0] animate-pulse"></span>
-          <span>SLIDE 04 / 05 • PROGRAMAS & DIPLOMADOS DESTACADOS</span>
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         

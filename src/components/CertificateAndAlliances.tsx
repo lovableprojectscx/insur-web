@@ -9,14 +9,6 @@ interface CertificateAndAlliancesProps {
 export const CertificateAndAlliances: React.FC<CertificateAndAlliancesProps> = ({ onOpenForm }) => {
   return (
     <section id="alianzas" className="py-20 lg:py-28 bg-[#0A2540] text-white relative overflow-hidden border-b border-slate-800 min-h-screen flex flex-col justify-center">
-      
-      {/* Slide Badge */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mb-6">
-        <div className="inline-flex items-center gap-2 bg-slate-900 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-700">
-          <span className="w-2 h-2 rounded-full bg-[#00A3E0] animate-pulse"></span>
-          <span>SLIDE 03 / 05 • ALIANZAS OFICIALES & MODELO DE CERTIFICADO</span>
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         

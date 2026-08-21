@@ -80,12 +80,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
 
   return (
     <section id="hero" className="relative pt-36 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-white via-slate-50 to-white text-slate-900 overflow-hidden border-b border-slate-200 min-h-screen flex flex-col justify-center">
-      
-      {/* Slide Badge */}
-      <div className="absolute top-24 left-8 hidden lg:flex items-center gap-2 bg-[#0A2540] text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-slate-700">
-        <span className="w-2 h-2 rounded-full bg-[#00A3E0] animate-pulse"></span>
-        <span>SLIDE 01 / 05 • INICIO & AULA VIRTUAL</span>
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         

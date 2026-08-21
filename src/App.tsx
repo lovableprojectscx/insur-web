@@ -6,7 +6,6 @@ import { CategoryGrid } from './components/CategoryGrid';
 import { CertificateAndAlliances } from './components/CertificateAndAlliances';
 import { CourseCatalog } from './components/CourseCatalog';
 import { InstructorsSection } from './components/InstructorsSection';
-import { SlideNavigator } from './components/SlideNavigator';
 import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
 import { MobileBottomBar } from './components/MobileBottomBar';
@@ -36,31 +35,28 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-cyan-500 selection:text-slate-950 pb-14 sm:pb-0">
+    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#00A3E0] selection:text-slate-950 pb-14 sm:pb-0">
       
       {/* Intro Preloader */}
       <Preloader />
-
-      {/* Floating PPT Slide Deck Navigator (Right-Side) */}
-      <SlideNavigator />
 
       {/* Top Ribbon & Navbar */}
       <Navbar onOpenForm={handleOpenRegistration} />
 
       <main>
-        {/* SLIDE 01: Keynote Hero Presentation */}
+        {/* Hero Presentation */}
         <HeroSection onOpenForm={handleOpenRegistration} />
 
-        {/* SLIDE 02: 5 Escuelas de Especialización (Expandable Accordion) */}
+        {/* 5 Escuelas de Especialización */}
         <CategoryGrid onSelectCategory={handleSelectCategory} />
 
-        {/* SLIDE 03: Alianzas Oficiales & Modelo de Certificado 3D con QR */}
+        {/* Alianzas Oficiales & Modelo de Certificado 3D */}
         <CertificateAndAlliances onOpenForm={handleOpenRegistration} />
 
-        {/* SLIDE 04: Programas y Diplomados con Temario Oficial */}
+        {/* Programas y Diplomados */}
         <CourseCatalog onOpenForm={handleOpenRegistration} />
 
-        {/* SLIDE 05: Plana Docente CIP & Abogados Especialistas */}
+        {/* Plana Docente CIP & Abogados */}
         <InstructorsSection />
       </main>
 
