@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
   onOpenForm: () => void;
@@ -7,23 +6,20 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
   return (
-    <section id="hero" className="pt-24 sm:pt-28 pb-6 sm:pb-10 bg-slate-100 flex items-center justify-center">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-full">
+    <section id="hero" className="pt-16 sm:pt-20 pb-4 sm:pb-8 bg-white flex items-center justify-center">
+      <div className="w-full max-w-7xl mx-auto px-0 sm:px-4">
         
-        {/* Official Banner Container - Clickable to Open Registration Modal */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
+        {/* Clean Official Banner - Without Borders, Frames or Box Overlays */}
+        <div
           onClick={onOpenForm}
-          className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl cursor-pointer group border-2 sm:border-4 border-white bg-white"
+          className="w-full cursor-pointer overflow-hidden transition-opacity hover:opacity-95"
         >
           <img
             src="/assets/hero_banner_official.png"
             alt="Inscríbete ahora y obtén un segundo curso gratis - Grupo INSUR"
-            className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+            className="w-full h-auto object-contain block"
           />
-        </motion.div>
+        </div>
 
       </div>
     </section>

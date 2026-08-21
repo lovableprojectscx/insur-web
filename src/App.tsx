@@ -27,7 +27,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#00A3E0] selection:text-slate-950 pb-16 sm:pb-0">
+    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#00A3E0] selection:text-slate-950 pb-16 sm:pb-0">
       
       {/* Intro Preloader */}
       <Preloader />
@@ -35,7 +35,7 @@ export function App() {
       {/* Clean Compact Navbar */}
       <Navbar onOpenForm={handleOpenRegistration} />
 
-      <main className="space-y-6 sm:space-y-10">
+      <main className="space-y-4 sm:space-y-8">
         {/* 1. Official Hero Banner */}
         <HeroSection onOpenForm={handleOpenRegistration} />
 
