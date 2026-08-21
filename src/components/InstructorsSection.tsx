@@ -5,7 +5,7 @@ import { INSTRUCTORS } from '../data/mockData';
 
 export const InstructorsSection: React.FC = () => {
   return (
-    <section id="docentes" className="py-20 lg:py-28 bg-white text-slate-900 relative overflow-hidden border-b border-slate-200 min-h-screen flex flex-col justify-center">
+    <section id="docentes" className="py-10 sm:py-14 bg-white text-slate-900 relative overflow-hidden border-b border-slate-200">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         

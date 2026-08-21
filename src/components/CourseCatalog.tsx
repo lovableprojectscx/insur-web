@@ -21,7 +21,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({ onOpenForm }) => {
   });
 
   return (
-    <section id="catalogo" className="py-20 lg:py-28 bg-slate-50 text-slate-900 relative border-b border-slate-200 min-h-screen flex flex-col justify-center">
+    <section id="catalogo" className="py-10 sm:py-14 bg-white text-slate-900 relative border-b border-slate-200">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         

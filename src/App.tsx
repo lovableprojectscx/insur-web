@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { CategoryGrid } from './components/CategoryGrid';
-import { CertificateAndAlliances } from './components/CertificateAndAlliances';
 import { CourseCatalog } from './components/CourseCatalog';
+import { CertificateAndAlliances } from './components/CertificateAndAlliances';
 import { InstructorsSection } from './components/InstructorsSection';
 import { Footer } from './components/Footer';
 import { WhatsAppFloating } from './components/WhatsAppFloating';
@@ -27,36 +26,26 @@ export function App() {
     setIsDiscountOpen(true);
   };
 
-  const handleSelectCategory = (_catId: string) => {
-    const catalogSection = document.getElementById('catalogo');
-    if (catalogSection) {
-      catalogSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#00A3E0] selection:text-slate-950 pb-14 sm:pb-0">
+    <div className="min-h-screen bg-slate-100 text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#00A3E0] selection:text-slate-950 pb-16 sm:pb-0">
       
       {/* Intro Preloader */}
       <Preloader />
 
-      {/* Top Ribbon & Navbar */}
+      {/* Clean Compact Navbar */}
       <Navbar onOpenForm={handleOpenRegistration} />
 
-      <main>
-        {/* Hero Presentation */}
+      <main className="space-y-6 sm:space-y-10">
+        {/* 1. Official Hero Banner */}
         <HeroSection onOpenForm={handleOpenRegistration} />
 
-        {/* 5 Escuelas de Especialización */}
-        <CategoryGrid onSelectCategory={handleSelectCategory} />
-
-        {/* Alianzas Oficiales & Modelo de Certificado 3D */}
-        <CertificateAndAlliances onOpenForm={handleOpenRegistration} />
-
-        {/* Programas y Diplomados */}
+        {/* 2. Catálogo de Cursos y Diplomados */}
         <CourseCatalog onOpenForm={handleOpenRegistration} />
 
-        {/* Plana Docente CIP & Abogados */}
+        {/* 3. Certificación y Alianzas CIP / ICA */}
+        <CertificateAndAlliances onOpenForm={handleOpenRegistration} />
+
+        {/* 4. Plana Docente CIP & Abogados */}
         <InstructorsSection />
       </main>
 

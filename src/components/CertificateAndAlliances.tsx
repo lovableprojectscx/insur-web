@@ -8,7 +8,7 @@ interface CertificateAndAlliancesProps {
 
 export const CertificateAndAlliances: React.FC<CertificateAndAlliancesProps> = ({ onOpenForm }) => {
   return (
-    <section id="alianzas" className="py-20 lg:py-28 bg-[#0A2540] text-white relative overflow-hidden border-b border-slate-800 min-h-screen flex flex-col justify-center">
+    <section id="certificado" className="py-10 sm:py-14 bg-[#0A2540] text-white relative overflow-hidden border-b border-slate-800">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
