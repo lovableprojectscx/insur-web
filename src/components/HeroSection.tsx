@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Smartphone, CheckCircle2, ShieldCheck, GraduationCap, Award, ChevronLeft, ChevronRight, Scale, Building2 } from 'lucide-react';
+import { ArrowRight, Smartphone, CheckCircle2, ShieldCheck, GraduationCap, Award, ChevronLeft, ChevronRight, Scale, Building2, Scroll, Compass, Sparkles } from 'lucide-react';
 
 interface HeroSectionProps {
   onOpenForm: () => void;
@@ -29,13 +29,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
       badgeBottomIcon: <ShieldCheck className="w-5 h-5 text-[#00A3E0]" />,
       image: '/assets/engineer_user_cutout.png',
       imageAlt: 'Ingeniero Civil Residente de Obra Grupo INSUR',
-      accentColor: 'text-[#00A3E0]',
-      themeColor: '#00A3E0'
+      accentColor: 'text-[#00A3E0]'
     },
     {
       id: 'alta-especializacion',
       tag: 'ESPECIALIZACIÓN & DIPLOMADOS',
-      tagIcon: <Building2 className="w-4 h-4 text-[#1559ED]" />,
+      tagIcon: <Building2 className="w-4 h-4 text-[#00A3E0]" />,
       title1: 'DIPLOMADOS EJECUTIVOS',
       title2: 'ESTRUCTURAS & BIM 5D',
       subtitle: 'Cálculo Sismorresistente, Hidráulica y Gestión Vial',
@@ -44,15 +43,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
       bullet2Title: 'Doble Certificación Universitaria',
       bullet2Sub: 'Respaldo institucional CIP nacional',
       btnText: 'VER DIPLOMADOS',
-      btnColor: 'bg-[#1559ED] hover:bg-blue-700 text-white border border-blue-400 shadow-blue-500/30',
+      btnColor: 'bg-[#00A3E0] hover:bg-[#0082B3] text-white border border-cyan-300 shadow-cyan-500/30',
       badgeTop: 'VACANTES LIMITADAS',
       badgeBottom: 'Doble Certificación CIP',
       badgeBottomSub: 'Horas Lectivas Válidas',
-      badgeBottomIcon: <Award className="w-5 h-5 text-[#1559ED]" />,
+      badgeBottomIcon: <Award className="w-5 h-5 text-[#00A3E0]" />,
       image: '/assets/instructor_vanessa.jpg',
       imageAlt: 'Dra. Vanessa Alarcón Docente Grupo INSUR',
-      accentColor: 'text-[#1559ED]',
-      themeColor: '#1559ED'
+      accentColor: 'text-[#00A3E0]'
     },
     {
       id: 'gestion-osce',
@@ -73,8 +71,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
       badgeBottomIcon: <Scale className="w-5 h-5 text-amber-500" />,
       image: '/assets/instructor_gabriel.jpg',
       imageAlt: 'Abogado Gabriel Flores Especialista OSCE Grupo INSUR',
-      accentColor: 'text-[#00A3E0]',
-      themeColor: '#0A2540'
+      accentColor: 'text-[#00A3E0]'
     }
   ];
 
@@ -103,6 +100,73 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <div className="absolute top-10 left-10 w-96 h-96 bg-[#00A3E0]/15 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#0A2540]/10 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* FLOATING ACADEMIC & ENGINEERING PARTICLES (Birretes, Diplomas, Compasses) */}
+      {/* ========================================================================= */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+        
+        {/* Floating Birrete 1 (Top Left) */}
+        <motion.div
+          animate={{
+            y: [0, -18, 0],
+            rotate: [0, 8, -6, 0]
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-28 left-6 sm:left-16 p-3 rounded-2xl bg-white/70 backdrop-blur-md border border-cyan-200/60 shadow-lg text-[#00A3E0] opacity-75 hidden sm:block"
+        >
+          <GraduationCap className="w-8 h-8" />
+        </motion.div>
+
+        {/* Floating Birrete 2 (Bottom Right) */}
+        <motion.div
+          animate={{
+            y: [0, 20, 0],
+            rotate: [0, -10, 6, 0]
+          }}
+          transition={{ duration: 8.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+          className="absolute bottom-12 right-10 sm:right-24 p-3.5 rounded-2xl bg-white/80 backdrop-blur-md border border-blue-200 shadow-xl text-[#0A2540] opacity-70 hidden sm:block"
+        >
+          <GraduationCap className="w-9 h-9" />
+        </motion.div>
+
+        {/* Floating Certified Diploma Scroll (Top Right) */}
+        <motion.div
+          animate={{
+            y: [0, -14, 0],
+            rotate: [0, -6, 8, 0]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          className="absolute top-36 right-8 sm:right-1/3 p-2.5 rounded-2xl bg-white/60 backdrop-blur-md border border-amber-200 shadow-md text-amber-500 opacity-65 hidden md:block"
+        >
+          <Scroll className="w-7 h-7" />
+        </motion.div>
+
+        {/* Floating Engineering Compass (Bottom Left) */}
+        <motion.div
+          animate={{
+            y: [0, 16, 0],
+            rotate: [0, 12, -8, 0]
+          }}
+          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+          className="absolute bottom-20 left-12 sm:left-1/4 p-2.5 rounded-2xl bg-white/60 backdrop-blur-md border border-cyan-200 shadow-md text-[#00A3E0] opacity-60 hidden lg:block"
+        >
+          <Compass className="w-7 h-7" />
+        </motion.div>
+
+        {/* Floating Sparkle / Star (Center) */}
+        <motion.div
+          animate={{
+            scale: [1, 1.25, 1],
+            opacity: [0.3, 0.7, 0.3]
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-cyan-400 opacity-40 pointer-events-none hidden lg:block"
+        >
+          <Sparkles className="w-10 h-10" />
+        </motion.div>
+
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,7 +216,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.35 }}
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[460px]"
           >
             
@@ -226,14 +290,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
 
             </div>
 
-            {/* Right Column: Dynamic Portrait / Professional Cutout */}
+            {/* Right Column: Clean, Perfectly Framed Portrait Without Text Cutoffs */}
             <div className="lg:col-span-5 flex items-center justify-center">
               <div 
                 className="relative w-full max-w-sm sm:max-w-md flex flex-col items-center cursor-pointer group"
                 onClick={onOpenForm}
               >
                 
-                {/* Photo Display */}
+                {/* Photo Container */}
                 <div className="relative w-full flex items-center justify-center min-h-[380px] sm:min-h-[420px]">
                   {slide.id === 'ingenieria-civil' ? (
                     // Transparent Cutout for Engineer
@@ -243,18 +307,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenForm }) => {
                       className="w-full h-auto max-h-[440px] sm:max-h-[480px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.22)] group-hover:scale-103 transition-transform duration-500"
                     />
                   ) : (
-                    // Framed Studio Portrait for Doctora / Lawyer
-                    <div className="relative w-full h-80 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                    // Beautiful Clean Studio Portrait for Doctora / Lawyer
+                    <div className="relative w-full h-84 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100 flex items-center justify-center">
                       <img
                         src={slide.image}
                         alt={slide.imageAlt}
                         className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A2540]/80 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4 right-4 text-white text-left">
-                        <p className="text-sm font-black text-white">{slide.imageAlt}</p>
-                        <p className="text-xs text-cyan-300 font-bold">{slide.subtitle}</p>
-                      </div>
                     </div>
                   )}
 
