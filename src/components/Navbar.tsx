@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowRight, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface NavbarProps {
   onOpenForm: () => void;
@@ -20,13 +21,13 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       
-      {/* CERSA-Style Top Royal Blue Notification Ribbon */}
+      {/* Top Royal Blue Notification Ribbon */}
       <div className="bg-[#1559ED] text-white text-xs font-bold py-2 px-4 shadow-sm border-b border-blue-600">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
           
           {/* Left Promo Badges */}
           <div className="flex items-center gap-2 truncate">
-            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs animate-pulse">
+            <span className="bg-amber-400 text-slate-950 font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
               ¡CONVOCATORIA 2026!
             </span>
             <span className="bg-blue-800 text-white font-extrabold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider truncate">
@@ -39,19 +40,21 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
 
           {/* Right Action CTA Button */}
           <div className="flex items-center gap-3 shrink-0">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={onOpenForm}
-              className="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider transition-all shadow-xs flex items-center gap-1 cursor-pointer"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-[11px] px-3.5 py-1 rounded-full uppercase tracking-wider transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
             >
-              <Sparkles className="w-3 h-3" />
+              <Zap className="w-3 h-3 fill-current" />
               <span>MÁS INFORMACIÓN</span>
-            </button>
+            </motion.button>
           </div>
 
         </div>
       </div>
 
-      {/* CERSA-Style Clean White Main Navbar */}
+      {/* Main Clean White Navbar */}
       <div className={`bg-white transition-all duration-300 ${
         isScrolled 
           ? 'border-b border-slate-200 shadow-md py-2.5' 
@@ -61,13 +64,16 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
           
           {/* Brand Logo */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="bg-slate-50 p-1.5 rounded-xl border border-slate-200 shadow-2xs group-hover:scale-105 transition-transform">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="bg-slate-50 p-1.5 rounded-xl border border-slate-200 shadow-2xs transition-transform"
+            >
               <img 
                 src="/assets/logo_insur.png" 
                 alt="Grupo INSUR - Centro de Altos Estudios y Desarrollo Profesional" 
                 className="h-9 sm:h-10 w-auto object-contain"
               />
-            </div>
+            </motion.div>
             
             <div className="text-left border-l-2 border-blue-600 pl-3">
               <span className="block font-black text-[#1559ED] text-base tracking-tight leading-none">
@@ -79,7 +85,7 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
             </div>
           </a>
 
-          {/* CERSA-Style Navigation Links */}
+          {/* Navigation Links */}
           <nav className="hidden lg:flex items-center gap-8 text-xs font-black text-slate-700 uppercase tracking-wide">
             <a href="#hero" className="text-[#1559ED] border-b-2 border-[#1559ED] pb-1 font-black">INICIO</a>
             <a href="#escuelas" className="hover:text-[#1559ED] transition-colors pb-1">NUESTRAS ESCUELAS</a>
@@ -88,17 +94,19 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
             <a href="#catalogo" className="hover:text-[#1559ED] transition-colors pb-1">CURSOS & DIPLOMADOS</a>
           </nav>
 
-          {/* CERSA-Style Right Action Controls */}
+          {/* Right Action Controls */}
           <div className="hidden lg:flex items-center gap-3">
             
-            {/* Currency selector badge like CERSA */}
+            {/* Currency selector badge */}
             <div className="flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200 text-[11px] font-black text-slate-700">
               <span className="px-2 py-0.5 rounded bg-[#1559ED] text-white">S/.</span>
               <span className="px-2 py-0.5 text-slate-400">$</span>
             </div>
 
             {/* Blue Aula Virtual Button */}
-            <a 
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               href="https://wa.me/51966000111?text=Hola%20Grupo%20INSUR,%20deseo%20acceder%20al%20Aula%20Virtual." 
               target="_blank"
               rel="noopener noreferrer"
@@ -106,7 +114,7 @@ export const Navbar = ({ onOpenForm }: NavbarProps) => {
             >
               <span>Aula Virtual</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </motion.a>
           </div>
 
           {/* Mobile Menu Controls */}

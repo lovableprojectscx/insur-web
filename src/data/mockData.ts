@@ -143,6 +143,7 @@ export const FEATURED_COURSES: Course[] = [
     badgeTag: 'MÁS VENDIDO 2026',
     instructorName: 'Ing. Roberto Carlos Vega (CIP N° 182490)',
     startDate: 'Inicio: 15 de Septiembre 2026',
+    image: '/assets/course_residencia.jpg',
     description: 'Aprende a dirigir proyectos de infraestructura pública y privada cumpliendo los estándares de la Ley de Contrataciones del Estado y BIM.',
     syllabus: [
       'Módulo 1: Planificación y Control de Obras Civiles (MS Project & Primavera P6)',
@@ -165,6 +166,7 @@ export const FEATURED_COURSES: Course[] = [
     badgeTag: 'NUEVA CONVOCATORIA',
     instructorName: 'Ing. Marco Antonio Ramos (CIP N° 162901)',
     startDate: 'Inicio: 20 de Septiembre 2026',
+    image: '/assets/course_topografia.jpg',
     description: 'Domina Estación Total, receptores GNSS RTK y procesamiento fotogramétrico con Pix4D y Agisoft Metashape.',
     syllabus: [
       'Módulo 1: Levantamientos Geodésicos Satelitales y Coordenadas UTM',
@@ -187,6 +189,7 @@ export const FEATURED_COURSES: Course[] = [
     badgeTag: 'ACREDITADO CIP',
     instructorName: 'Dra. Ing. Vanessa Alarcón (CIP N° 194820)',
     startDate: 'Inicio: 18 de Septiembre 2026',
+    image: '/assets/course_estructuras.jpg',
     description: 'Análisis sismorresistente, modelado estructural en ETABS, SAP2000 y aplicación rigurosa de las normas E.030 y E.060.',
     syllabus: [
       'Módulo 1: Criterios de Estructuración Sismorresistente Norma E.030',
@@ -209,6 +212,7 @@ export const FEATURED_COURSES: Course[] = [
     badgeTag: 'BIM 4D & 5D',
     instructorName: 'Ing. Roberto Carlos Vega (CIP N° 182490)',
     startDate: 'Inicio: 22 de Septiembre 2026',
+    image: '/assets/course_bim.jpg',
     description: 'Desarrolla proyectos integrales en entorno BIM coordinado, detección de interferencias en Navisworks y cómputos métricos automáticos.',
     syllabus: [
       'Módulo 1: Revit Arquitectura e Interfaz de Proyecto Paramétrico',
@@ -231,6 +235,7 @@ export const FEATURED_COURSES: Course[] = [
     badgeTag: 'ENSAYOS ASTM & MTC',
     instructorName: 'Mg. Ing. Gabriel Flores T. (CIP N° 210452)',
     startDate: 'Inicio: 25 de Septiembre 2026',
+    image: '/assets/course_calidad.jpg',
     description: 'Ensayos de laboratorio bajo normas ASTM, AASHTO y MTC para obras viales y edificaciones de gran envergadura.',
     syllabus: [
       'Módulo 1: Granulometría, Clasificación SUCS y Límites de Atterberg',
@@ -253,6 +258,7 @@ export const FEATURED_COURSES: Course[] = [
     badgeTag: 'MANUAL DG-2018 MTC',
     instructorName: 'Ing. Marco Antonio Ramos (CIP N° 162901)',
     startDate: 'Inicio: 28 de Septiembre 2026',
+    image: '/assets/course_carreteras.jpg',
     description: 'Diseño geométrico de carreteras según manual DG-2018 del MTC, movimiento de tierras y obras de arte viales.',
     syllabus: [
       'Módulo 1: Puntos, Superficies y Alineamiento Horizontal Normado',

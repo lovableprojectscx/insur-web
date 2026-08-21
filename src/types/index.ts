@@ -34,6 +34,7 @@ export interface Course {
   instructorName?: string;
   startDate?: string;
   hours?: number;
+  image?: string;
 }
 
 export interface Testimonial {

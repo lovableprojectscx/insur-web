@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Preloader } from './components/Preloader';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { CategoryGrid } from './components/CategoryGrid';
@@ -41,6 +42,9 @@ export function App() {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-blue-600 selection:text-white pb-14 sm:pb-0">
       
+      {/* Sleek Logo Preloader Intro Screen */}
+      <Preloader />
+
       {/* CERSA-Style Top Ribbon & Navbar */}
       <Navbar onOpenForm={handleOpenForm} />
 
@@ -57,7 +61,7 @@ export function App() {
         {/* CERSA-Style "MODELO DE CERTIFICADO" (3D Realistic Diploma Mockup & QR Verification) */}
         <CertificateModel onOpenForm={handleOpenForm} />
 
-        {/* CERSA-Style Course Catalog Marketplace */}
+        {/* Rich Visual Course Catalog Marketplace */}
         <CourseCatalog onOpenForm={handleOpenForm} />
 
         {/* Expert Faculty / Plana Docente CIP */}

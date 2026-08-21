@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Smartphone, Award, Lock, Tag, CheckCircle2, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Smartphone, Award, Lock, Tag, CheckCircle2, ShieldCheck, GraduationCap } from 'lucide-react';
 import type { LeadFormData } from '../types';
 
 interface HeroSectionProps {
@@ -29,11 +29,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSubmitLead }) => {
   };
 
   return (
-    <section id="hero" className="relative pt-36 pb-20 lg:pt-40 lg:pb-24 bg-white text-slate-900 overflow-hidden border-b border-slate-200">
+    <section id="hero" className="relative pt-36 pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-b from-white via-[#F8FAFC] to-white text-slate-900 overflow-hidden border-b border-slate-200">
       
-      {/* CERSA-Style Subtle Dot Grid Pattern */}
+      {/* Clean Ambient Corporate Lighting (No awkward dot/star patterns!) */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#1559ED_1.5px,transparent_1.5px)] [background-size:24px_24px]"></div>
+        <div className="absolute top-10 left-10 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-100/50 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,9 +48,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSubmitLead }) => {
             className="lg:col-span-7 space-y-6 text-center lg:text-left"
           >
             
-            {/* Top Badge Tag */}
+            {/* Clean Corporate Top Badge Tag */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-[#1559ED] text-xs font-black uppercase tracking-wider shadow-2xs">
-              <Sparkles className="w-4 h-4 text-[#1559ED]" />
+              <GraduationCap className="w-4 h-4 text-[#1559ED]" />
               <span>CONVOCATORIA Y LANZAMIENTO EXCLUSIVO 2026</span>
             </div>
 
@@ -68,29 +69,37 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSubmitLead }) => {
 
             {/* Feature Bullets */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left max-w-lg mx-auto lg:mx-0">
-              <div className="flex items-center gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-2xs">
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-slate-200 shadow-xs"
+              >
                 <CheckCircle2 className="w-5 h-5 text-[#1559ED] shrink-0" />
                 <span className="text-xs font-black text-slate-800">Clases 100% Virtuales En Vivo</span>
-              </div>
-              <div className="flex items-center gap-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-2xs">
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-slate-200 shadow-xs"
+              >
                 <ShieldCheck className="w-5 h-5 text-[#1559ED] shrink-0" />
                 <span className="text-xs font-black text-slate-800">Certificación Oficial con QR</span>
-              </div>
+              </motion.div>
             </div>
 
             {/* CERSA-Style Giant Cyan Pill Action Button */}
             <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="#registro"
-                className="px-9 py-4 rounded-full bg-[#00A3E0] hover:bg-[#0082B3] text-white font-black text-sm uppercase tracking-wider shadow-xl hover:shadow-cyan-500/30 transition-all inline-flex items-center gap-3 cursor-pointer active:scale-95 border border-cyan-300"
+                className="px-9 py-4 rounded-full bg-[#00A3E0] hover:bg-[#0082B3] text-white font-black text-sm uppercase tracking-wider shadow-xl hover:shadow-cyan-500/30 transition-all inline-flex items-center gap-3 cursor-pointer border border-cyan-300"
               >
                 <span>¡HAZ CLIC AQUÍ!</span>
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </motion.a>
 
               {/* App Badges */}
               <div className="flex items-center gap-3 text-xs font-extrabold text-slate-600">
-                <div className="flex items-center gap-1.5 bg-slate-100 px-3 py-2 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-1.5 bg-white px-3 py-2 rounded-xl border border-slate-200 shadow-2xs">
                   <Smartphone className="w-4 h-4 text-[#1559ED]" />
                   <span>iOS & Android App</span>
                 </div>
@@ -99,7 +108,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSubmitLead }) => {
 
           </motion.div>
 
-          {/* Right Column: CERSA-Style Registration Form Card & Campus App Graphic */}
+          {/* Right Column: CERSA-Style Registration Form Card */}
           <motion.div 
             id="registro"
             initial={{ opacity: 0, y: 30 }}
@@ -199,10 +208,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSubmitLead }) => {
                   </div>
 
                   {/* Action Button */}
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={loading}
-                    className="w-full mt-3 py-4 px-4 rounded-xl bg-[#1559ED] hover:bg-blue-800 text-white font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+                    className="w-full mt-3 py-4 px-4 rounded-xl bg-[#1559ED] hover:bg-blue-800 text-white font-black text-xs uppercase tracking-wider shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {loading ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -212,7 +223,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSubmitLead }) => {
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}
-                  </button>
+                  </motion.button>
 
                   {/* Security Guarantee Note */}
                   <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-1 font-medium">
